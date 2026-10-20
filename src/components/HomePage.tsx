@@ -5,6 +5,7 @@ import dream11MockupImg from '../assets/images/dream11cardimage.webp';
 import ioDeviceBuilderImg from '../assets/images/iodevicebuilder.webp';
 import { AnimatedCounter } from './AnimatedCounter';
 import { prefetchCaseStudy } from '../utils/imagePreloader';
+import { getAssetUrl } from '../utils/assets';
 
 interface HomePageProps {
   onPageChange: (page: PageId) => void;
@@ -153,7 +154,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
               
               <div className="w-full aspect-[16/9] min-h-[220px] overflow-hidden relative border-b border-[#2e313c] bg-[#101014] flex items-center justify-center p-6 md:p-8">
                 <img 
-                  src="/opcuacasestudy/assets/product/workspace-overview.webp" 
+                  src={getAssetUrl('/opcuacasestudy/assets/product/workspace-overview.webp')} 
                   alt="OPC UA Explorer Live Workspace Screenshot showing live plotting and address space" 
                   loading="eager"
                   decoding="async"

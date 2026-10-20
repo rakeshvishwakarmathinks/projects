@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Maximize2 } from 'lucide-react';
 import ImageZoomModal from './ImageZoomModal';
+import { getAssetUrl } from '../utils/assets';
 
 interface ZoomableImageProps {
   src: string;
@@ -21,15 +22,16 @@ export default function ZoomableImage({
 }: ZoomableImageProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const resolvedSrc = getAssetUrl(src);
 
   useEffect(() => {
     // If the image is already in browser cache, mark as loaded immediately
     const img = new Image();
-    img.src = src;
+    img.src = resolvedSrc;
     if (img.complete) {
       setIsLoaded(true);
     }
-  }, [src]);
+  }, [resolvedSrc]);
 
   return (
     <>
@@ -47,7 +49,7 @@ export default function ZoomableImage({
         }}
       >
         <img 
-          src={src} 
+          src={resolvedSrc} 
           alt=""
           aria-hidden="true" 
           loading={loading}
@@ -70,7 +72,7 @@ export default function ZoomableImage({
       <ImageZoomModal 
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)} 
-        src={src} 
+        src={resolvedSrc} 
         alt={alt} 
       />
     </>

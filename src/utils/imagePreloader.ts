@@ -1,25 +1,27 @@
 // Utility to preload and cache project images without blocking the initial page load
 
+import { getAssetUrl } from './assets';
+
 const preloadedUrls = new Set<string>();
 
 export const OPC_UA_IMAGES = [
-  '/opcuacasestudy/assets/product/workspace-overview.webp',
-  '/opcuacasestudy/assets/product/opcua-concept.webp',
-  '/opcuacasestudy/assets/product/entry-apps-gallery.webp',
-  '/opcuacasestudy/assets/product/empty-workspace.webp',
-  '/opcuacasestudy/assets/product/add-server.webp',
-  '/opcuacasestudy/assets/product/configure.webp',
-  '/opcuacasestudy/assets/product/connect-dialog.webp',
-  '/opcuacasestudy/assets/product/connected-tree.webp',
-  '/opcuacasestudy/assets/product/add-to-table.webp',
-  '/opcuacasestudy/assets/product/read-current.webp',
-  '/opcuacasestudy/assets/product/read-historical.webp',
-  '/opcuacasestudy/assets/product/read-historical-result.webp',
-  '/opcuacasestudy/assets/product/write.webp',
-  '/opcuacasestudy/assets/product/live-plot.webp',
-  '/opcuacasestudy/assets/product/generated-script.webp',
-  '/opcuacasestudy/assets/product/activity-log.webp',
-  '/opcuacasestudy/assets/product/node-info.webp',
+  getAssetUrl('/opcuacasestudy/assets/product/workspace-overview.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/opcua-concept.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/entry-apps-gallery.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/empty-workspace.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/add-server.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/configure.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/connect-dialog.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/connected-tree.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/add-to-table.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/read-current.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/read-historical.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/read-historical-result.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/write.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/live-plot.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/generated-script.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/activity-log.webp'),
+  getAssetUrl('/opcuacasestudy/assets/product/node-info.webp'),
 ];
 
 /**
@@ -54,8 +56,8 @@ export function preloadImages(urls: string[], priority: 'high' | 'auto' | 'low' 
 }
 
 export const DREAM11_IMAGES = [
-  '/assets/dream11_page_04.webp',
-  '/assets/dream11_page_08.webp',
+  getAssetUrl('/assets/dream11_page_04.webp'),
+  getAssetUrl('/assets/dream11_page_08.webp'),
 ];
 
 /**

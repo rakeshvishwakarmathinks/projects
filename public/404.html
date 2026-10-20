@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rakesh Vishwakarma | UX Designer</title>
+    <script>
+      // Single Page App fallback for GitHub Pages
+      var pathname = window.location.pathname;
+      var segments = pathname.split('/').filter(Boolean);
+      var lastSegment = segments[segments.length - 1] || '';
+      var repoBase = segments.length > 0 ? '/' + segments[0] + '/' : '/';
+      if (['dream11', 'motor-parameter', 'io-device-builder', 'ai-design-to-code', 'opc-ua-explorer'].includes(lastSegment)) {
+        window.location.replace(repoBase + '#' + lastSegment);
+      } else {
+        window.location.replace(repoBase);
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

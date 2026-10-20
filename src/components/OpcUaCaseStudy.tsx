@@ -5,6 +5,7 @@ import ZoomableImage from './ZoomableImage';
 import OpcUaSandbox from './OpcUaSandbox';
 import { Play, ExternalLink, RefreshCw, Users, FileSearch, Layers, Compass, CheckCircle2, ArrowRight, Terminal } from 'lucide-react';
 import { preloadImages, OPC_UA_IMAGES } from '../utils/imagePreloader';
+import { getAssetUrl } from '../utils/assets';
 
 interface OpcUaCaseStudyProps {
   onPageChange: (page: PageId) => void;
@@ -69,7 +70,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
             aria-label="Watch OPC UA Explorer product video on MathWorks (opens in a new tab)"
           >
             <img 
-              src="/opcuacasestudy/assets/product/workspace-overview.webp" 
+              src={getAssetUrl('/opcuacasestudy/assets/product/workspace-overview.webp')} 
               alt="OPC UA Explorer Live Workspace Screenshot, Watch Video" 
               loading="eager"
               decoding="async"

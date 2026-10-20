@@ -7,6 +7,7 @@ import {
   preloadImages, 
   DREAM11_IMAGES 
 } from '../utils/imagePreloader';
+import { getAssetUrl } from '../utils/assets';
 import { 
   Users, 
   Zap, 
@@ -257,7 +258,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
           {/* High-Resolution Legacy Workflow Slide */}
           <div className="rounded-xl overflow-hidden border border-border-custom shadow-2xl bg-[#0a0a0f] mb-10">
             <ZoomableImage 
-              src="/assets/dream11_page_04.webp" 
+              src={getAssetUrl('/assets/dream11_page_04.webp')} 
               alt="Legacy 4-screen Dream11 workflow: 1. Match Landing, 2. Contest List, 3. Team Creation with hidden red dot for unannounced players, 4. All Teams Built screen without aggregated alerts."
               className="w-full h-auto"
             />
@@ -403,7 +404,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
           {/* High-Resolution Solution Slide */}
           <div className="rounded-xl overflow-hidden border border-border-custom shadow-2xl bg-[#0a0a0f] mb-10">
             <ZoomableImage 
-              src="/assets/dream11_page_08.webp" 
+              src={getAssetUrl('/assets/dream11_page_08.webp')} 
               alt="Shipped solution diagram showing 4 screens: 1. Match Landing with Lineups Out badge, 2. All Teams Built with 1 Unannounced alert badge, 3. One-Click Removal bottom sheet with Remove CTA, 4. Replacement Picker with refunded credits."
               className="w-full h-auto"
             />
