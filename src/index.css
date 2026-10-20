@@ -39,6 +39,7 @@
   --font-mono: "DM Mono", monospace;
   
   --animate-pulse-slow: pulse 2s ease-in-out infinite;
+  --animate-gentle-blink: gentle-blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-scale-line: scaleX 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   --animate-shake-gate: shake 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -169,6 +170,21 @@
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-8px); }
   75% { transform: translateX(8px); }
+}
+
+@keyframes gentle-blink {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 91, 79, 0.45));
+  }
+  50% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+}
+
+.animate-gentle-blink {
+  animation: gentle-blink 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Custom Scrollbar - enhanced visibility while scrolling, resting, and on hover */

@@ -35,8 +35,8 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
       {/* ── HERO ── */}
       <section className="min-h-[78vh] md:min-h-[85vh] flex flex-col justify-center pt-24 md:pt-28 pb-16 md:pb-20 border-b border-[#2a2a31] relative overflow-hidden grain" aria-label="Introduction">
         <div className="max-w-[1200px] w-full mx-auto px-6 md:px-8 relative z-10">
-          <div className="flex items-center gap-3 font-mono text-xs font-semibold tracking-widest uppercase text-accent mb-6">
-            <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_12px_rgba(255,91,79,0.8)]" aria-hidden="true" />
+          <div className="flex items-center gap-3 font-mono text-xs font-semibold tracking-widest uppercase text-accent mb-6 animate-gentle-blink select-none">
+            <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_12px_rgba(255,91,79,0.8)] shrink-0" aria-hidden="true" />
             Solving wicked problems
           </div>
 
