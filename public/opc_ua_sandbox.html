@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC UA Factory Automation Sandbox</title>
+    <style>
+        :root {
+            --bg-canvas: #0c121e;
+            --panel-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --matlab-blue: #2563eb;
+            --matlab-blue-hover: #1d4ed8;
+            --border-light: #e2e8f0;
+            --pill-green: #10b981;
+            --pill-red: #ef4444;
+            --conveyor-orange: #ea580c;
+            --robot-cyan: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: transparent;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 780px;
+            background-color: var(--panel-bg);
+            border-radius: 24px;
+            box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* TOP FACTORY CANVAS */
+        .factory-canvas {
+            background: linear-gradient(180deg, #0e1626 0%, #0a0f1a 100%);
+            height: 380px;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Subtle dashed background grid lines */
+        .canvas-grid {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            opacity: 0.18;
+        }
+
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            border-left: 1px dashed rgba(255, 255, 255, 0.35);
+        }
+
+        /* Canvas header controls */
+        .canvas-header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .connection-indicator {
+            background-color: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: #cbd5e1;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        .connection-indicator span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--pill-green);
+            box-shadow: 0 0 8px var(--pill-green);
+            transition: all 0.3s ease;
+        }
+
+        .connection-indicator.offline span.dot {
+            background-color: var(--pill-red);
+            box-shadow: 0 0 8px var(--pill-red);
+        }
+
+        .pause-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+
+        .pause-button:hover {
+            background-color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .pause-button svg {
+            width: 14px;
+            height: 14px;
+            fill: #0f172a;
+        }
+
+        /* CONVEYOR ASSEMBLY */
+        .conveyor-assembly {
+            position: absolute;
+            bottom: 50px;
+            left: 20px;
+            right: 20px;
+            z-index: 4;
+        }
+
+        .conveyor-belt {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid #334155;
+            border-bottom: 1px solid #0f172a;
+            overflow: hidden;
+        }
+
+        .belt-stripes {
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                115deg,
+                transparent,
+                transparent 18px,
+                rgba(255, 255, 255, 0.08) 18px,
+                rgba(255, 255, 255, 0.08) 22px
+            );
+            animation: moveBelt 1.2s linear infinite;
+        }
+
+        .conveyor-rollers {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            top: -2px;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .roller-wheel {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+            border-radius: 50%;
+            border: 2px solid #334155;
+            position: relative;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+            animation: spinRoller 1.2s linear infinite;
+        }
+
+        .roller-wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #94a3b8;
+        }
+
+        /* Pillars underneath conveyor */
+        .conveyor-legs {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 40px;
+            position: absolute;
+            top: 18px;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        .conveyor-leg {
+            width: 14px;
+            height: 48px;
+            background: linear-gradient(90deg, #1e293b 0%, #334155 50%, #0f172a 100%);
+            border-radius: 0 0 3px 3px;
+            box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+        }
+
+        /* Speed Tag under conveyor */
+        .speed-tag {
+            position: absolute;
+            bottom: 12px;
+            left: 30px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+            padding: 4px 14px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* FURNACE MODULE */
+        .furnace-module {
+            position: absolute;
+            bottom: 68px;
+            left: 175px;
+            width: 160px;
+            height: 190px;
+            background: linear-gradient(180deg, #1e2838 0%, #111722 100%);
+            border: 3px solid #364457;
+            border-radius: 14px 14px 0 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 14px 14px 14px;
+            z-index: 5;
+        }
+
+        .furnace-heating-chamber {
+            width: 125px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .heating-stripe {
+            height: 5px;
+            background-color: #ea580c;
+            border-radius: 3px;
+            box-shadow: 0 0 10px #ea580c, 0 0 4px #ea580c;
+            transition: all 0.3s ease;
+        }
+
+        .furnace-window {
+            width: 44px;
+            height: 26px;
+            background: #253142;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+        }
+
+        .furnace-window-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 6px #ffffff;
+        }
+
+        .furnace-tag {
+            position: absolute;
+            top: 48px;
+            left: 218px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 4px 14px;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* ROBOTIC WORKSTATION */
+        .robotic-workstation {
+            position: absolute;
+            bottom: 68px;
+            left: 480px;
+            width: 100px;
+            height: 140px;
+            z-index: 5;
+        }
+
+        .robot-frame {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 90px;
+            border: 2px solid #475569;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .robot-hub {
+            position: absolute;
+            top: -12px;
+            left: 22px;
+            width: 20px;
+            height: 20px;
+            background: #64748b;
+            border: 2px solid #94a3b8;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            z-index: 2;
+        }
+
+        .robot-arm-upper {
+            position: absolute;
+            top: -2px;
+            left: 31px;
+            width: 5px;
+            height: 48px;
+            background: #94a3b8;
+            transform-origin: top center;
+            transform: rotate(38deg);
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+
+        .robot-elbow {
+            position: absolute;
+            bottom: -6px;
+            left: -4px;
+            width: 12px;
+            height: 12px;
+            background: #38bdf8;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #38bdf8;
+        }
+
+        .robot-arm-fore {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 4px;
+            height: 40px;
+            background: #94a3b8;
+            transform-origin: top center;
+            transform: rotate(-74deg);
+            transition: transform 0.4s ease;
+        }
+
+        .robot-effector {
+            position: absolute;
+            bottom: -6px;
+            left: -8px;
+            width: 20px;
+            height: 10px;
+            background: #0284c7;
+            border-radius: 3px;
+        }
+
+        /* Conical laser / sensor scan beam */
+        .robot-scan-beam {
+            position: absolute;
+            top: 8px;
+            left: -12px;
+            width: 44px;
+            height: 38px;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.45) 0%, rgba(56, 189, 248, 0.05) 100%);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+            pointer-events: none;
+            animation: pulseBeam 1.5s ease-in-out infinite alternate;
+        }
+
+        .robot-tag {
+            position: absolute;
+            top: 76px;
+            left: 468px;
+            background: var(--matlab-blue);
+            border-radius: 16px;
+            padding: 4px 14px;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: 0 0 14px rgba(37, 99, 235, 0.6);
+            white-space: nowrap;
+        }
+
+        /* CARGO PACKAGES ON CONVEYOR */
+        .cargo-box {
+            position: absolute;
+            bottom: 68px;
+            width: 32px;
+            height: 22px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 6;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .cargo-box .box-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+
+        .cargo-left {
+            left: 18px;
+            background-color: #475569;
+            border: 1px solid #64748b;
+        }
+
+        .cargo-orange {
+            left: 405px;
+            background-color: #ea580c;
+            border: 1px solid #f97316;
+            box-shadow: 0 0 10px rgba(234, 88, 12, 0.4);
+        }
+
+        .cargo-orange .box-dot {
+            background-color: #fef08a;
+        }
+
+        .cargo-green {
+            left: 585px;
+            background-color: #059669;
+            border: 1px solid #10b981;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+        }
+
+        .cargo-green .box-dot {
+            background-color: #6ee7b7;
+        }
+
+        /* MIDDLE SECTION: 3 KPIs */
+        .telemetry-kpi-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 22px 28px;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .kpi-column p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .kpi-column h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-feature-settings: "tnum";
+            letter-spacing: -0.2px;
+        }
+
+        /* BOTTOM SECTION: CONSOLE CONTROLS */
+        .console-workspace {
+            padding: 24px 32px 28px 32px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .console-top-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .control-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-block label {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Server Connection Switch */
+        .toggle-capsule {
+            display: flex;
+            background-color: #f1f5f9;
+            padding: 4px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .toggle-pill {
+            flex: 1;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .toggle-pill.active {
+            background-color: var(--matlab-blue);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Tag Variable Selector Dropdown */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .tag-select {
+            width: 100%;
+            padding: 9.5px 36px 9.5px 16px;
+            background-color: #f1f5f9;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-dark);
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .tag-select:focus {
+            border-color: #cbd5e1;
+        }
+
+        .select-chevron {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* Slider Row */
+        .slider-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slider-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slider-header-info .modify-label {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .slider-header-info .live-indicator {
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .slider-header-info .live-indicator strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .slider-controls-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .custom-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            position: relative;
+        }
+
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--matlab-blue);
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            transition: transform 0.1s;
+        }
+
+        .custom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .slider-numeric-value {
+            font-size: 13.5px;
+            font-weight: 700;
+            min-width: 65px;
+            text-align: right;
+            color: var(--text-dark);
+        }
+
+        .btn-pill {
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-read {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .btn-read:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-write {
+            background-color: var(--matlab-blue);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-write:hover {
+            background-color: var(--matlab-blue-hover);
+        }
+
+        /* Animations */
+        @keyframes moveBelt {
+            from { transform: translateX(0); }
+            to { transform: translateX(-40px); }
+        }
+
+        @keyframes spinRoller {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseBeam {
+            from { opacity: 0.55; }
+            to { opacity: 0.9; }
+        }
+
+        .paused * {
+            animation-play-state: paused !important;
+        }
+
+        @media (max-width: 680px) {
+            .console-top-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .telemetry-kpi-deck {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .slider-controls-row {
+                flex-wrap: wrap;
+            }
+            .custom-slider {
+                min-width: 100%;
+            }
+            .slider-numeric-value {
+                flex: 1;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container" id="dashboard">
+        <!-- TOP FACTORY CANVAS -->
+        <div class="factory-canvas" id="canvas">
+            <!-- Subtle dashed background grid -->
+            <div class="canvas-grid">
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+            </div>
+
+            <!-- Canvas Top Controls -->
+            <div class="canvas-header">
+                <div class="connection-indicator" id="connBadge">
+                    <span class="dot"></span>
+                    <span id="connText">OPC.TCP://CONNECTED</span>
+                </div>
+                <button class="pause-button" id="pauseBtn" title="Pause / Resume Live Stream" aria-label="Pause Simulation">
+                    <svg viewBox="0 0 24 24" id="pauseIcon">
+                        <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+                        <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Furnace Module -->
+            <div class="furnace-tag" id="tagFurnace">169.0&deg;C</div>
+            <div class="furnace-module">
+                <div class="furnace-heating-chamber">
+                    <div class="heating-stripe"></div>
+                    <div class="heating-stripe"></div>
+                    <div class="heating-stripe"></div>
+                    <div class="heating-stripe"></div>
+                </div>
+                <div class="furnace-window">
+                    <div class="furnace-window-dot"></div>
+                </div>
+            </div>
+
+            <!-- Robotic Workstation -->
+            <div class="robot-tag" id="tagRobot">17 PPM</div>
+            <div class="robotic-workstation">
+                <div class="robot-frame"></div>
+                <div class="robot-hub"></div>
+                <div class="robot-arm-upper" id="robotArmUpper">
+                    <div class="robot-elbow"></div>
+                    <div class="robot-arm-fore" id="robotArmFore">
+                        <div class="robot-effector"></div>
+                        <div class="robot-scan-beam" id="scanBeam"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cargo Packages -->
+            <div class="cargo-box cargo-left">
+                <div class="box-dot"></div>
+            </div>
+            <div class="cargo-box cargo-orange">
+                <div class="box-dot"></div>
+            </div>
+            <div class="cargo-box cargo-green">
+                <div class="box-dot"></div>
+            </div>
+
+            <!-- Conveyor Assembly -->
+            <div class="conveyor-assembly">
+                <div class="conveyor-legs">
+                    <div class="conveyor-leg"></div>
+                    <div class="conveyor-leg"></div>
+                    <div class="conveyor-leg"></div>
+                    <div class="conveyor-leg"></div>
+                    <div class="conveyor-leg"></div>
+                </div>
+                <div class="conveyor-belt">
+                    <div class="belt-stripes" id="beltStripes"></div>
+                </div>
+                <div class="conveyor-rollers">
+                    <div class="roller-wheel"></div>
+                    <div class="roller-wheel"></div>
+                </div>
+            </div>
+
+            <!-- Conveyor Speed Tag -->
+            <div class="speed-tag" id="tagConveyor">28.0 m/min</div>
+        </div>
+
+        <!-- 3-KPI METRICS ROW -->
+        <div class="telemetry-kpi-deck">
+            <div class="kpi-column">
+                <p>Batch Quality</p>
+                <h3 id="kpiQuality">88.8%</h3>
+            </div>
+            <div class="kpi-column">
+                <p>Total Output</p>
+                <h3 id="kpiOutput">1305 units</h3>
+            </div>
+            <div class="kpi-column">
+                <p>Thermal Delta</p>
+                <h3 id="kpiDelta">-51.0&deg;C</h3>
+            </div>
+        </div>
+
+        <!-- CONSOLE WORKSPACE CONTROLS -->
+        <div class="console-workspace">
+            <!-- Row 1: Connection & Tag Selector -->
+            <div class="console-top-row">
+                <div class="control-block">
+                    <label>OPC UA Server Connection</label>
+                    <div class="toggle-capsule">
+                        <div class="toggle-pill active" id="btnOnline">Online</div>
+                        <div class="toggle-pill" id="btnOffline">Offline</div>
+                    </div>
+                </div>
+                <div class="control-block">
+                    <label>OPC UA Tag Variable</label>
+                    <div class="select-wrapper">
+                        <select class="tag-select" id="tagSelector">
+                            <option value="robot">ns=2;s=Line1.Robot.PPM</option>
+                            <option value="furnace">ns=2;s=Line1.Furnace.Temperature</option>
+                            <option value="conveyor">ns=2;s=Line1.Conveyor.Speed</option>
+                        </select>
+                        <span class="select-chevron">&#9662;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2 & 3: Modify Node Value Slider & Buttons -->
+            <div class="slider-section">
+                <div class="slider-header-info">
+                    <span class="modify-label" id="modifyLabel">Modify Node Value (ppm)</span>
+                    <span class="live-indicator">Current Live: <strong id="currentLiveVal">17 ppm</strong></span>
+                </div>
+                <div class="slider-controls-row">
+                    <input type="range" class="custom-slider" id="sliderControl" min="0" max="60" value="38" step="1">
+                    <div class="slider-numeric-value" id="sliderDisplayVal">38 ppm</div>
+                    <button class="btn-pill btn-read" id="btnRead">Read</button>
+                    <button class="btn-pill btn-write" id="btnWrite">Write</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Live Variables
+            let isOnline = true;
+            let isPaused = false;
+            let currentTag = 'robot'; // 'robot' | 'furnace' | 'conveyor'
+
+            let robotPpm = 17;
+            let furnaceTemp = 169.0;
+            let conveyorSpeed = 28.0;
+
+            let batchQuality = 88.8;
+            let totalOutput = 1305;
+            let thermalDelta = -51.0;
+
+            // DOM References
+            const dashboard = document.getElementById('dashboard');
+            const connBadge = document.getElementById('connBadge');
+            const connText = document.getElementById('connText');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const pauseIcon = document.getElementById('pauseIcon');
+
+            const tagRobot = document.getElementById('tagRobot');
+            const tagFurnace = document.getElementById('tagFurnace');
+            const tagConveyor = document.getElementById('tagConveyor');
+
+            const kpiQuality = document.getElementById('kpiQuality');
+            const kpiOutput = document.getElementById('kpiOutput');
+            const kpiDelta = document.getElementById('kpiDelta');
+
+            const btnOnline = document.getElementById('btnOnline');
+            const btnOffline = document.getElementById('btnOffline');
+            const tagSelector = document.getElementById('tagSelector');
+            const modifyLabel = document.getElementById('modifyLabel');
+            const currentLiveVal = document.getElementById('currentLiveVal');
+            const sliderControl = document.getElementById('sliderControl');
+            const sliderDisplayVal = document.getElementById('sliderDisplayVal');
+            const btnRead = document.getElementById('btnRead');
+            const btnWrite = document.getElementById('btnWrite');
+
+            const robotArmUpper = document.getElementById('robotArmUpper');
+            const robotArmFore = document.getElementById('robotArmFore');
+            const scanBeam = document.getElementById('scanBeam');
+            const beltStripes = document.getElementById('beltStripes');
+
+            // Tag Configurations
+            const tagConfigs = {
+                robot: {
+                    label: 'Modify Node Value (ppm)',
+                    unit: 'ppm',
+                    min: 0,
+                    max: 60,
+                    step: 1,
+                    getLive: () => robotPpm,
+                    setLive: (v) => { robotPpm = Math.round(v); },
+                    format: (v) => Math.round(v) + ' ppm'
+                },
+                furnace: {
+                    label: 'Modify Node Value (°C)',
+                    unit: '°C',
+                    min: 100,
+                    max: 260,
+                    step: 0.5,
+                    getLive: () => furnaceTemp,
+                    setLive: (v) => { furnaceTemp = parseFloat(v.toFixed(1)); },
+                    format: (v) => v.toFixed(1) + '°C'
+                },
+                conveyor: {
+                    label: 'Modify Node Value (m/min)',
+                    unit: 'm/min',
+                    min: 10,
+                    max: 50,
+                    step: 0.5,
+                    getLive: () => conveyorSpeed,
+                    setLive: (v) => { conveyorSpeed = parseFloat(v.toFixed(1)); },
+                    format: (v) => v.toFixed(1) + ' m/min'
+                }
+            };
+
+            function syncSliderToCurrentTag(valOverride) {
+                const cfg = tagConfigs[currentTag];
+                modifyLabel.textContent = cfg.label;
+                sliderControl.min = cfg.min;
+                sliderControl.max = cfg.max;
+                sliderControl.step = cfg.step;
+
+                const currentVal = (valOverride !== undefined) ? valOverride : (currentTag === 'robot' ? 38 : cfg.getLive());
+                sliderControl.value = currentVal;
+                sliderDisplayVal.textContent = cfg.format(currentVal);
+                currentLiveVal.textContent = cfg.format(cfg.getLive());
+            }
+
+            // Tag Dropdown Change
+            tagSelector.addEventListener('change', function(e) {
+                currentTag = e.target.value;
+                syncSliderToCurrentTag();
+            });
+
+            // Slider input update
+            sliderControl.addEventListener('input', function(e) {
+                const cfg = tagConfigs[currentTag];
+                const v = parseFloat(e.target.value);
+                sliderDisplayVal.textContent = cfg.format(v);
+            });
+
+            // Write Value
+            btnWrite.addEventListener('click', function() {
+                if (!isOnline) {
+                    alert('Cannot write: OPC UA Server connection is Offline.');
+                    return;
+                }
+                const cfg = tagConfigs[currentTag];
+                const targetVal = parseFloat(sliderControl.value);
+                cfg.setLive(targetVal);
+
+                btnWrite.textContent = '✓ Written';
+                btnWrite.style.backgroundColor = '#10b981';
+                setTimeout(() => {
+                    btnWrite.textContent = 'Write';
+                    btnWrite.style.backgroundColor = '';
+                }, 800);
+
+                updateVisuals();
+            });
+
+            // Read Value
+            btnRead.addEventListener('click', function() {
+                const cfg = tagConfigs[currentTag];
+                sliderControl.value = cfg.getLive();
+                sliderDisplayVal.textContent = cfg.format(cfg.getLive());
+
+                btnRead.textContent = '...';
+                setTimeout(() => {
+                    btnRead.textContent = 'Read';
+                }, 300);
+            });
+
+            // Server Online / Offline Toggle
+            btnOnline.addEventListener('click', function() {
+                if (isOnline) return;
+                isOnline = true;
+                btnOnline.classList.add('active');
+                btnOffline.classList.remove('active');
+                connBadge.classList.remove('offline');
+                connText.textContent = 'OPC.TCP://CONNECTED';
+                dashboard.classList.remove('paused');
+            });
+
+            btnOffline.addEventListener('click', function() {
+                if (!isOnline) return;
+                isOnline = false;
+                btnOffline.classList.add('active');
+                btnOnline.classList.remove('active');
+                connBadge.classList.add('offline');
+                connText.textContent = 'OPC.TCP://DISCONNECTED';
+                dashboard.classList.add('paused');
+            });
+
+            // Pause / Resume Button
+            pauseBtn.addEventListener('click', function() {
+                isPaused = !isPaused;
+                if (isPaused) {
+                    dashboard.classList.add('paused');
+                    pauseIcon.innerHTML = '<polygon points="7,5 19,12 7,19"></polygon>';
+                    pauseBtn.title = 'Resume Simulation';
+                } else {
+                    if (isOnline) dashboard.classList.remove('paused');
+                    pauseIcon.innerHTML = '<rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect>';
+                    pauseBtn.title = 'Pause Simulation';
+                }
+            });
+
+            function updateVisuals() {
+                tagRobot.textContent = robotPpm + ' PPM';
+                tagFurnace.textContent = furnaceTemp.toFixed(1) + '°C';
+                tagConveyor.textContent = conveyorSpeed.toFixed(1) + ' m/min';
+
+                currentLiveVal.textContent = tagConfigs[currentTag].format(tagConfigs[currentTag].getLive());
+
+                kpiQuality.textContent = batchQuality.toFixed(1) + '%';
+                kpiOutput.textContent = Math.round(totalOutput) + ' units';
+                kpiDelta.textContent = (thermalDelta > 0 ? '+' : '') + thermalDelta.toFixed(1) + '°C';
+
+                // Conveyor animation rate based on conveyorSpeed
+                const beltRate = Math.max(0.4, 30 / conveyorSpeed);
+                beltStripes.style.animationDuration = beltRate + 's';
+            }
+
+            // Real-time animation & subtle industrial sensor jitter
+            let armAngle = 38;
+            let armDir = 1;
+
+            setInterval(function() {
+                if (!isOnline || isPaused) return;
+
+                // Arm oscillation
+                armAngle += armDir * 0.8;
+                if (armAngle > 44) armDir = -1;
+                if (armAngle < 32) armDir = 1;
+                robotArmUpper.style.transform = 'rotate(' + armAngle + 'deg)';
+                robotArmFore.style.transform = 'rotate(' + (-armAngle * 1.9) + 'deg)';
+
+                // Subtle sensor telemetry variance
+                if (Math.random() < 0.25) {
+                    furnaceTemp += (Math.random() - 0.5) * 0.2;
+                    furnaceTemp = Math.max(100, Math.min(260, furnaceTemp));
+                    thermalDelta = furnaceTemp - 220;
+                }
+
+                if (Math.random() < 0.15) {
+                    totalOutput += 1;
+                    batchQuality = Math.min(99.9, Math.max(85, batchQuality + (Math.random() - 0.49) * 0.1));
+                }
+
+                updateVisuals();
+            }, 300);
+
+            // Initial Setup
+            syncSliderToCurrentTag(38);
+            updateVisuals();
+        })();
+    </script>
+</body>
+</html>

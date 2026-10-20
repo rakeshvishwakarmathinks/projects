@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@theme {
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.625rem;
+
+  --color-bg: #000000;
+  --color-bg-alt: #0a0a0d;
+  --color-surface: #0d0d11;
+  --color-surface-2: #141418;
+  
+  --color-ink: #f5f5f7;
+  --color-ink-2: #d2d2d7;
+  --color-ink-3: #a1a1aa;
+  --color-line: #1c1c22;
+  --color-border-custom: #1c1c22;
+  --color-border-custom-2: rgba(255, 255, 255, 0.15);
+  
+  --color-accent: #ff5b4f;
+  --color-accent-hover: #ff7066;
+  --color-accent-light: rgba(255, 91, 79, 0.14);
+  --color-accent-dark: #ff5b4f;
+  --color-accent-on-light: #c5221f;
+
+  --color-light-bg: #f5f5f7;
+  --color-light-card: #ffffff;
+  --color-light-text: #1d1d1f;
+  --color-light-subtext: #48484a;
+  --color-light-muted: #515154;
+  --color-light-border: #d2d2d7;
+  --color-light-border-subtle: #e5e5ea;
+  
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", monospace;
+  
+  --animate-pulse-slow: pulse 2s ease-in-out infinite;
+  --animate-scale-line: scaleX 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  --animate-shake-gate: shake 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --bg: #000000;
+  --surface: #0d0d11;
+  --surface-2: #141418;
+  --text: #f5f5f7;
+  --muted: #d2d2d7;
+  --subtle: #a1a1aa;
+  --line: #1c1c22;
+  --accent: #ff5b4f;
+  --accent-hover: #ff7066;
+  --accent-light: rgba(255, 91, 79, 0.14);
+  --accent-dark: #ff5b4f;
+
+  --gradient: linear-gradient(
+    105deg,
+    #ff5b4f 0%,
+    #ff453a 50%,
+    #ff5b4f 100%
+  );
+}
+
+@layer utilities {
+  /* 20px (text-xl) display text readability enhancement */
+  .font-display.text-xl,
+  .text-xl.font-display,
+  .font-display.text-\[20px\],
+  .text-\[20px\].font-display {
+    letter-spacing: 0.1em !important;
+    word-spacing: 0.12em;
+  }
+
+
+  .gradient-text {
+    background: linear-gradient(105deg, #ff453a 0%, #ff3b30 50%, #ff3b30 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-cta {
+    background: linear-gradient(
+      105deg,
+      #ff3b30 0%,
+      #ff3b30 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(255, 59, 48, 0.35);
+  }
+
+  .bento-card {
+    position: relative;
+    background: 
+      linear-gradient(#0d0d12, #0a0a0e) padding-box,
+      linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.48) 0%, 
+        rgba(175, 182, 198, 0.28) 25%, 
+        rgba(85, 90, 105, 0.2) 50%, 
+        rgba(195, 202, 218, 0.35) 75%, 
+        rgba(255, 255, 255, 0.44) 100%
+      ) border-box;
+    border: 1px solid transparent;
+    border-radius: 22px;
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+      0 18px 45px -12px rgba(0, 0, 0, 0.85),
+      0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+  }
+
+  .bento-card:hover {
+    background: 
+      linear-gradient(#111117, #0d0d12) padding-box,
+      linear-gradient(135deg, 
+        rgba(255, 59, 48, 0.9) 0%, 
+        rgba(255, 255, 255, 0.6) 28%, 
+        rgba(255, 59, 48, 0.4) 58%, 
+        rgba(210, 215, 230, 0.5) 80%, 
+        rgba(255, 80, 70, 0.9) 100%
+      ) border-box;
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+      0 26px 65px -12px rgba(0, 0, 0, 0.95),
+      0 0 35px -5px rgba(255, 59, 48, 0.22);
+    transform: translateY(-4px);
+  }
+
+  .bento-card-light {
+    background: #ffffff;
+    border: 1px solid #e5e5ea;
+    border-radius: 22px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .quote-editorial {
+    border-left: 3px solid #ff3b30;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 18px 18px 0;
+  }
+
+  .quote-editorial-light {
+    border-left: 3px solid #ff3b30;
+    background: #f5f5f7;
+    border-radius: 0 18px 18px 0;
+  }
+
+  /* Editorial design systems utility classes */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Keyframes */
+@keyframes scaleX {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.4); opacity: 0.4; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* Custom Scrollbar - enhanced visibility while scrolling, resting, and on hover */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) rgba(10, 10, 14, 0.5);
+}
+
+html.is-scrolling {
+  scrollbar-color: rgba(255, 255, 255, 0.55) rgba(10, 10, 14, 0.6);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 14, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.26);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* While actively scrolling, make scrollbar thumb noticeably more visible */
+html.is-scrolling ::-webkit-scrollbar-thumb,
+body.is-scrolling ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3b30 !important;
+  border: 1px solid transparent;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 10px rgba(255, 59, 48, 0.45);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #ff3b30 !important;
+  background-clip: padding-box !important;
+}
+
+/* Global resets for full dark editorial presentation */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(255, 59, 48, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 20%, rgba(196, 0, 26, 0.06), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(255, 59, 48, 0.05), transparent 30%);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1.5rem;
+  background: var(--color-accent);
+  color: #ffffff;
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 9999px;
+  z-index: 99999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1.25rem;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

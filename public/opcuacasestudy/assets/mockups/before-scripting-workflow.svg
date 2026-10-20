@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2440" height="640" viewBox="0 0 2440 640" font-family="'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <style>
+      .card    { fill:#ffffff; stroke:#d8dde3; stroke-width:2; }
+      .badge   { fill:#8a94a6; }
+      .badgeTxt{ fill:#ffffff; font-size:34px; font-weight:700; }
+      .title   { fill:#2b3440; font-size:30px; font-weight:700; }
+      .codebox { fill:#f4f6f8; stroke:#e2e6eb; stroke-width:1.5; rx:8; }
+      .code    { font-family:'SF Mono','Menlo','Consolas',monospace; font-size:23px; fill:#1a5e63; }
+      .prompt  { fill:#a0a8b4; }
+      .arrow   { fill:#b6bec9; }
+      .h1      { fill:#1f2733; font-size:44px; font-weight:800; }
+      .sub     { fill:#6b7280; font-size:26px; }
+      .foot    { fill:#98a0ac; font-size:24px; font-style:italic; }
+    </style>
+    <marker id="ah" markerWidth="12" markerHeight="12" refX="2" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" class="arrow"/>
+    </marker>
+  </defs>
+
+  <rect width="2440" height="640" fill="#fbfcfd"/>
+
+  <!-- Header -->
+  <text x="60" y="78" class="h1">The &#8220;before&#8221; workflow</text>
+  <text x="60" y="122" class="sub">Every OPC UA operation was a separate line of MATLAB &#8212; typed, remembered, and debugged by hand in the command window.</text>
+
+  <!-- ===== 5 step cards ===== -->
+  <!-- geometry: x0=60, cardW=428, gap=48, top=170, cardH=340 -->
+
+  <!-- Card 1 -->
+  <g>
+    <rect class="card" x="60" y="170" width="428" height="340" rx="14"/>
+    <circle class="badge" cx="112" cy="222" r="30"/>
+    <text class="badgeTxt" x="112" y="234" text-anchor="middle">1</text>
+    <text class="title" x="158" y="234">Create a client</text>
+    <rect class="codebox" x="88" y="278" width="372" height="196" rx="8" fill="#f4f6f8" stroke="#e2e6eb"/>
+    <text class="code" x="110" y="322"><tspan class="prompt">&gt;&gt; </tspan>uainfo =</text>
+    <text class="code" x="110" y="356">   opcuaserverinfo(</text>
+    <text class="code" x="110" y="390">   &#39;Hostname&#39;);</text>
+    <text class="code" x="110" y="440"><tspan class="prompt">&gt;&gt; </tspan>ua = opcua(uainfo);</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g>
+    <rect class="card" x="536" y="170" width="428" height="340" rx="14"/>
+    <circle class="badge" cx="588" cy="222" r="30"/>
+    <text class="badgeTxt" x="588" y="234" text-anchor="middle">2</text>
+    <text class="title" x="634" y="234">Connect</text>
+    <rect class="codebox" x="564" y="278" width="372" height="196" rx="8" fill="#f4f6f8" stroke="#e2e6eb"/>
+    <text class="code" x="586" y="336"><tspan class="prompt">&gt;&gt; </tspan>ua.connect(</text>
+    <text class="code" x="586" y="370">   &#39;username&#39;,</text>
+    <text class="code" x="586" y="404">   &#39;12345&#39;)</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g>
+    <rect class="card" x="1012" y="170" width="428" height="340" rx="14"/>
+    <circle class="badge" cx="1064" cy="222" r="30"/>
+    <text class="badgeTxt" x="1064" y="234" text-anchor="middle">3</text>
+    <text class="title" x="1110" y="234">Browse nodes</text>
+    <rect class="codebox" x="1040" y="278" width="372" height="196" rx="8" fill="#f4f6f8" stroke="#e2e6eb"/>
+    <text class="code" x="1062" y="352"><tspan class="prompt">&gt;&gt; </tspan>node =</text>
+    <text class="code" x="1062" y="386">   browseNamespace(ua);</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g>
+    <rect class="card" x="1488" y="170" width="428" height="340" rx="14"/>
+    <circle class="badge" cx="1540" cy="222" r="30"/>
+    <text class="badgeTxt" x="1540" y="234" text-anchor="middle">4</text>
+    <text class="title" x="1586" y="234">Read / Write / Invoke</text>
+    <rect class="codebox" x="1516" y="278" width="372" height="196" rx="8" fill="#f4f6f8" stroke="#e2e6eb"/>
+    <text class="code" x="1538" y="316"><tspan class="prompt">&gt;&gt; </tspan>readValue(ua,n);</text>
+    <text class="code" x="1538" y="350"><tspan class="prompt">&gt;&gt; </tspan>writeValue(ua,n,v);</text>
+    <text class="code" x="1538" y="384"><tspan class="prompt">&gt;&gt; </tspan>invoke(ua,m,args);</text>
+    <text class="code" x="1538" y="440"><tspan class="prompt">&gt;&gt; </tspan>subscribe(...)</text>
+  </g>
+
+  <!-- Card 5 -->
+  <g>
+    <rect class="card" x="1964" y="170" width="428" height="340" rx="14"/>
+    <circle class="badge" cx="2016" cy="222" r="30"/>
+    <text class="badgeTxt" x="2016" y="234" text-anchor="middle">5</text>
+    <text class="title" x="2062" y="234">Business logic</text>
+    <rect class="codebox" x="1992" y="278" width="372" height="196" rx="8" fill="#f4f6f8" stroke="#e2e6eb"/>
+    <text class="code" x="2014" y="336">   % your analysis</text>
+    <text class="code" x="2014" y="370">   % on the node</text>
+    <text class="code" x="2014" y="404">   % data ...</text>
+  </g>
+
+  <!-- Arrows between cards -->
+  <line x1="492" y1="340" x2="530" y2="340" stroke="#b6bec9" stroke-width="4" marker-end="url(#ah)"/>
+  <line x1="968" y1="340" x2="1006" y2="340" stroke="#b6bec9" stroke-width="4" marker-end="url(#ah)"/>
+  <line x1="1444" y1="340" x2="1482" y2="340" stroke="#b6bec9" stroke-width="4" marker-end="url(#ah)"/>
+  <line x1="1920" y1="340" x2="1958" y2="340" stroke="#b6bec9" stroke-width="4" marker-end="url(#ah)"/>
+
+  <!-- Footer -->
+  <text x="60" y="588" class="foot">No GUI, no visualization &#8212; the toolbox had the capability, but no interface. &#8220;For everything, we need to write commands in MATLAB.&#8221;</text>
+</svg>
