@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan to apply Bebas Neue display typography from index.html across the hero headline, case study cards, stat counters, and section headers with all-caps styling, while preserving DM Sans body readability and full WCAG accessibility compliance.",
+  "updatedAt":  "2026-10-22T18:32:37.633617697Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

@@ -57,17 +57,17 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
               All work
             </button>
 
-            <p className="font-mono text-xs tracking-widest uppercase text-accent mb-4 font-semibold">
+            <p className="font-mono text-xs tracking-[0.18em] uppercase text-accent mb-4 font-semibold">
               Dream11 · Case Study 2 of 5
             </p>
 
-            <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
               One-Click<br />
               Player Removal<br />
-              <span className="text-zinc-400 font-medium">for 140M Users</span>
+              <span className="text-accent">for 140M Users</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed font-normal max-w-xl">
+            <p className="text-base sm:text-lg text-zinc-300 leading-[1.7] font-light max-w-xl">
               When official team lineups drop 30 minutes before match start, millions of fantasy cricket users scramble to replace rested or benched players. We redesigned the critical editing flow, achieving 100% platform adoption and saving ~50% in edit time.
             </p>
           </div>
@@ -275,7 +275,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                 1
               </div>
               <h3 className="font-sans text-base sm:text-lg font-semibold text-white mb-2">No High-Level Visibility</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 The "All Teams Built" page gave no aggregated indication of which specific squads had unannounced players. Users managing 10 to 20 teams had to open every squad one by one.
               </p>
             </div>
@@ -285,7 +285,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                 2
               </div>
               <h3 className="font-sans text-base sm:text-lg font-semibold text-white mb-2">Buried Within Tabs</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 The "Unannounced" warning was just a minuscule red dot buried inside one of four positional tabs (WK, BAT, AR, BWL). Users had to swipe across all tabs to hunt down benched players.
               </p>
             </div>
@@ -295,7 +295,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                 3
               </div>
               <h3 className="font-sans text-base sm:text-lg font-semibold text-white mb-2">Manual Budget Re-Math</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 Deselecting a player manually required recalculating credit caps on the fly while watching a ticking clock, leading to rushed substitutions and bad picks.
               </p>
             </div>
@@ -419,7 +419,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
             <div className="bg-[#12121c] border border-[#262734] p-5 rounded-xl">
               <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block mb-2">Screen 1</span>
               <h3 className="font-sans text-base font-semibold text-white mb-1.5">Match Landing</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 Prominent <strong className="text-white font-medium">"Lineups Out"</strong> badge on match cards alerting users immediately upon opening the app.
               </p>
             </div>
@@ -427,7 +427,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
             <div className="bg-[#12121c] border border-[#262734] p-5 rounded-xl">
               <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block mb-2">Screen 2</span>
               <h3 className="font-sans text-base font-semibold text-white mb-1.5">All Teams Built</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 High-visibility <strong className="text-amber-400 font-medium">"1 unannounced"</strong> alert pill on affected squads with direct one-click removal entry point.
               </p>
             </div>
@@ -435,7 +435,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
             <div className="bg-[#12121c] border border-[#262734] p-5 rounded-xl">
               <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block mb-2">Screen 3</span>
               <h3 className="font-sans text-base font-semibold text-white mb-1.5">One-Click Modal</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 Action sheet surfaces the unannounced player directly with a single bold CTA: <strong className="text-accent font-medium">"REMOVE 1 UNANNOUNCED PLAYER"</strong>.
               </p>
             </div>
@@ -443,7 +443,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
             <div className="bg-[#12121c] border border-[#262734] p-5 rounded-xl">
               <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block mb-2">Screen 4</span>
               <h3 className="font-sans text-base font-semibold text-white mb-1.5">Select Replacement</h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                 Green confirmation toast, credits refunded to 20.0, and roster pre-filtered into <strong className="text-emerald-400 font-medium">Announced</strong> players.
               </p>
             </div>
@@ -474,7 +474,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                   <AnimatedCounter value="100%" />
                 </div>
                 <h3 className="font-sans text-base font-semibold text-white mb-2">140M+ Users Impacted</h3>
-                <p className="text-sm text-zinc-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                   Adopted by 100% of users who had unannounced players during the 30-minute pre-match window across India and global markets.
                 </p>
               </div>
@@ -488,7 +488,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                   <AnimatedCounter value="~50%" />
                 </div>
                 <h3 className="font-sans text-base font-semibold text-white mb-2">Edit Time Slashed</h3>
-                <p className="text-sm text-zinc-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                   Reduced average team modification time from ~2 minutes 14 seconds down to under 15 seconds, virtually eliminating missed match locks.
                 </p>
               </div>
@@ -502,7 +502,7 @@ export default function Dream11CaseStudy({ onPageChange }: Dream11CaseStudyProps
                   <AnimatedCounter value="99.8%" />
                 </div>
                 <h3 className="font-sans text-base font-semibold text-white mb-2">Squad Completion Rate</h3>
-                <p className="text-sm text-zinc-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
                   Dramatic decline in customer support tickets regarding zero-point unannounced player penalties, preserving platform goodwill and contest revenue.
                 </p>
               </div>

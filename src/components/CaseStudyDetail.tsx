@@ -49,13 +49,13 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 </svg>
                 All work
               </button>
-              <p className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 3 of 5</p>
-              <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]">
-                Hardware sensor<br />
-                integration:<br />
-                days → minutes
+              <p className="font-mono text-xs tracking-[0.18em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 3 of 5</p>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
+                Hardware Sensor<br />
+                Integration:<br />
+                <span className="text-accent">Days → Minutes</span>
               </h1>
-              <p className="text-base font-light text-zinc-300 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg font-light text-zinc-300 leading-[1.7] max-w-lg">
                 Engineers building autonomous vehicles, robotics, and aerospace hardware
                 spent 2–3 days per sensor integration writing C/C++ wrapper code, hunting
                 documentation, and navigating a process that assumed expert programming knowledge.
@@ -206,7 +206,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 <div key={idx} className="p-6 bg-white border border-[#e5e5ea] rounded-xl shadow-sm relative">
                   <div className="font-mono text-xs text-[#c5221f] tracking-widest uppercase mb-4 font-semibold">{item.domain}</div>
                   <h3 className="font-semibold text-[#1d1d1f] text-base mb-2">{item.title}</h3>
-                  <p className="text-xs font-light text-zinc-600 leading-relaxed">{item.body}</p>
+                  <p className="text-sm font-normal text-zinc-600 leading-relaxed">{item.body}</p>
                 </div>
               ))}
             </div>
@@ -225,8 +225,8 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                     <span className="absolute top-0 left-0 w-8 h-1 bg-[#ff3b30] rounded-tl-xl"></span>
                     <div>
                       <div className="font-mono text-xs text-[#c5221f] tracking-wider uppercase mb-3 font-semibold">{item.dec}</div>
-                      <h4 className="font-semibold text-[#1d1d1f] text-sm mb-2">{item.title}</h4>
-                      <p className="text-xs font-light text-zinc-600 leading-relaxed">{item.body}</p>
+                      <h4 className="font-semibold text-[#1d1d1f] text-base mb-2">{item.title}</h4>
+                      <p className="text-sm font-normal text-zinc-600 leading-relaxed">{item.body}</p>
                     </div>
                   </div>
                 ))}
@@ -338,17 +338,17 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
               <div className="p-6 bg-[#0d0d11] border border-border-custom hover:border-accent transition-all rounded-xl">
                 <span className="font-mono text-xs text-accent uppercase block mb-3 font-semibold">User feedback</span>
                 <h3 className="font-semibold text-white text-base mb-2">Tested against physical rigs</h3>
-                <p className="text-xs font-light text-zinc-300 leading-relaxed">Tested the wizard directly on real Arduino and Raspberry Pi hardware setups. The automatic type checking prevented board compilation failures downstream.</p>
+                <p className="text-sm font-normal text-zinc-300 leading-relaxed">Tested the wizard directly on real Arduino and Raspberry Pi hardware setups. The automatic type checking prevented board compilation failures downstream.</p>
               </div>
               <div className="p-6 bg-[#0d0d11] border border-border-custom hover:border-accent transition-all rounded-xl">
                 <span className="font-mono text-xs text-accent uppercase block mb-3 font-semibold">Design systems</span>
                 <h3 className="font-semibold text-white text-base mb-2">Reusable wizard standard</h3>
-                <p className="text-xs font-light text-zinc-300 leading-relaxed">The step-by-step metadata block setup we built was adopted as the layout model for two subsequent projects: hardware configurations and characteristics analyzers.</p>
+                <p className="text-sm font-normal text-zinc-300 leading-relaxed">The step-by-step metadata block setup we built was adopted as the layout model for two subsequent projects: hardware configurations and characteristics analyzers.</p>
               </div>
               <div className="p-6 bg-[#0d0d11] border border-border-custom hover:border-accent transition-all rounded-xl">
                 <span className="font-mono text-xs text-accent uppercase block mb-3 font-semibold">Corporate alignment</span>
                 <h3 className="font-semibold text-white text-base mb-2">Engineering advocacy</h3>
-                <p className="text-xs font-light text-zinc-300 leading-relaxed">Advocated for the non-technical wizard path with engineering heads by demonstrating drop-off research data in existing community libraries.</p>
+                <p className="text-sm font-normal text-zinc-300 leading-relaxed">Advocated for the non-technical wizard path with engineering heads by demonstrating drop-off research data in existing community libraries.</p>
               </div>
             </div>
           </div>
@@ -367,9 +367,9 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                   { num: "02", text: "<strong>Wizards must allow non-linear escape routes.</strong> While our simplified wizard was highly beneficial for beginners, expert developers occasionally felt limited by rigidity. Merging linear workflows with accessible tree-views satisfies both segmentations." },
                   { num: "03", text: "<strong>Pitch the roadmap beyond V1.</strong> Automated library scraping and prelaunch templates are incredibly handy. Surfacing these early creates alignment for sequential development iterations." }
                 ].map((item, idx) => (
-                  <div key={idx} className="grid grid-cols-[32px_1fr] gap-4 py-6 border-b border-[#e5e5ea] last:border-none font-light">
+                  <div key={idx} className="grid grid-cols-[32px_1fr] gap-4 py-6 border-b border-[#e5e5ea] last:border-none">
                     <span className="font-mono text-xs text-[#c5221f] mt-0.5 font-bold">{item.num}</span>
-                    <p className="text-xs text-zinc-700 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal" dangerouslySetInnerHTML={{ __html: item.text }}></p>
                   </div>
                 ))}
               </div>
@@ -445,13 +445,13 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 </svg>
                 All work
               </button>
-              <p className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 4 of 5</p>
-              <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]">
-                Precision motor<br />
-                parameter estimation<br />
-                for global EV OEMs
+              <p className="font-mono text-xs tracking-[0.18em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 4 of 5</p>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
+                Precision Motor<br />
+                Parameter Estimation<br />
+                <span className="text-accent">For Global EV OEMs</span>
               </h1>
-              <p className="text-base font-light text-zinc-300 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg font-light text-zinc-300 leading-[1.7] max-w-lg">
                 Motor control engineers at Boeing, Tesla, Nissan, and Ford were spending
                 days calibrating motors through fragmented scripts and trial-and-error.
                 We redesigned the entire workflow into a safety-first, guided desktop application,
@@ -621,7 +621,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                   <div className="mb-6 font-light">
                     <div className="font-mono text-xs text-[#c5221f] tracking-widest uppercase mb-4 font-semibold">{item.step}</div>
                     <h3 className="font-semibold text-[#1d1d1f] text-base mb-2">{item.title}</h3>
-                    <p className="text-xs font-light text-zinc-600 leading-relaxed">{item.body}</p>
+                    <p className="text-sm font-normal text-zinc-600 leading-relaxed">{item.body}</p>
                   </div>
                 </div>
               ))}
@@ -739,7 +739,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 ].map((item, idx) => (
                   <div key={idx} className="grid grid-cols-[32px_1fr] gap-4 py-6 border-b border-[#e5e5ea] last:border-none">
                     <span className="font-mono text-xs text-[#c5221f] mt-0.5 font-bold">{item.num}</span>
-                    <p className="text-xs text-zinc-700 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal" dangerouslySetInnerHTML={{ __html: item.text }}></p>
                   </div>
                 ))}
               </div>
@@ -815,13 +815,13 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 </svg>
                 All work
               </button>
-              <p className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 5 of 5</p>
-              <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]">
-                AI-assisted<br />
-                design-to-code:<br />
-                70% faster
+              <p className="font-mono text-xs tracking-[0.18em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 5 of 5</p>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
+                AI-Assisted<br />
+                Design-to-Code:<br />
+                <span className="text-accent">70% Faster</span>
               </h1>
-              <p className="text-base font-light text-zinc-300 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg font-light text-zinc-300 leading-[1.7] max-w-lg">
                 Design handover had a hidden structural problem nobody had named.
                 Figma outputs HTML/CSS box model code. MATLAB GUIs are built with
                 a completely different grid syntax. Every developer was manually translating
@@ -982,7 +982,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                   <div className="mb-6 font-light">
                     <div className="font-mono text-xs text-[#c5221f] tracking-widest uppercase mb-4 font-semibold">{item.phase}</div>
                     <h3 className="font-semibold text-[#1d1d1f] text-base mb-2">{item.title}</h3>
-                    <p className="text-xs font-light text-zinc-600 leading-relaxed">{item.body}</p>
+                    <p className="text-sm font-normal text-zinc-600 leading-relaxed">{item.body}</p>
                   </div>
                 </div>
               ))}
@@ -1082,7 +1082,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
                 ].map((item, idx) => (
                   <div key={idx} className="grid grid-cols-[32px_1fr] gap-4 py-6 border-b border-[#e5e5ea] last:border-none">
                     <span className="font-mono text-xs text-[#c5221f] mt-0.5 font-bold">{item.num}</span>
-                    <p className="text-xs text-zinc-700 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal" dangerouslySetInnerHTML={{ __html: item.text }}></p>
                   </div>
                 ))}
               </div>

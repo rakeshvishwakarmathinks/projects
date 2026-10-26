@@ -37,13 +37,13 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
               </svg>
               All work
             </button>
-            <p className="font-mono text-xs tracking-wider uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 1 of 5</p>
-            <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]">
+            <p className="font-mono text-xs tracking-[0.18em] uppercase text-accent mb-4 font-semibold">MathWorks · Case Study 1 of 5</p>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
               OPC UA Explorer:<br />
-              no-code industrial<br />
-              data client
+              No-Code Industrial<br />
+              <span className="text-accent">Data Client</span>
             </h1>
-            <p className="text-lg font-light text-ink-2 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg font-light text-zinc-300 leading-[1.7] max-w-lg">
               From scripting to a no-code industrial data client: turning MATLAB OPC workflows into a point-and-click app that lets engineers browse, read, write, monitor, and visualize live factory data without writing code.
             </p>
           </div>
@@ -303,25 +303,25 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
               <span className="font-mono text-xs text-[#515154] bg-[#f0f0f4] px-3 py-1 border border-[#e5e5ea] rounded-sm font-medium">4 Field Inquiries</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#e5e5ea]">
-              <div className="p-6 md:p-8 flex flex-col justify-between md:border-b border-[#e5e5ea] hover:bg-[#fafafc] transition-colors">
+              <div className="p-6 md:p-8 flex flex-col justify-between md:border-b border-[#e5e5ea] bg-white">
                 <p className="font-sans text-base font-light italic text-[#333336] leading-relaxed mb-6">
                   &ldquo;For everything, we need to write commands in MATLAB. We want something like plug and play because we are already doing a lot of scripting with the prediction algorithms.&rdquo;
                 </p>
                 <cite className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider not-italic font-semibold">Customer 1 · Prediction Team</cite>
               </div>
-              <div className="p-6 md:p-8 flex flex-col justify-between md:border-b border-[#e5e5ea] hover:bg-[#fafafc] transition-colors">
+              <div className="p-6 md:p-8 flex flex-col justify-between md:border-b border-[#e5e5ea] bg-white">
                 <p className="font-sans text-base font-light italic text-[#333336] leading-relaxed mb-6">
                   &ldquo;There are no ready-made OPC UA blocks in App Designer. Functionalities such as OPC UA Read and Write should be ready to use so that we can focus on the task of working with data coming from those blocks.&rdquo;
                 </p>
                 <cite className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider not-italic font-semibold">Customer 2 · Test Infrastructure</cite>
               </div>
-              <div className="p-6 md:p-8 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
+              <div className="p-6 md:p-8 flex flex-col justify-between bg-white">
                 <p className="font-sans text-base font-light italic text-[#333336] leading-relaxed mb-6">
                   &ldquo;I can deal with our OPC UA server using the command window… Unfortunately, the OPC Data Access Explorer doesn't work because 'The RPC server is not available' always appears. It would be nice to extend the Explorer to allow connections to OPC UA.&rdquo;
                 </p>
                 <cite className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider not-italic font-semibold">Customer 3 · Plant Operations</cite>
               </div>
-              <div className="p-6 md:p-8 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
+              <div className="p-6 md:p-8 flex flex-col justify-between bg-white">
                 <p className="font-sans text-base font-light italic text-[#333336] leading-relaxed mb-6">
                   &ldquo;I was supporting an Industrial Automation customer and one of their priorities was to visualize the collected data.&rdquo;
                 </p>
@@ -394,12 +394,12 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                     <FileSearch className="w-4 h-4 text-[#ff3b30] shrink-0" />
                   </div>
                   <h4 className="font-sans text-base sm:text-lg font-semibold tracking-tight text-zinc-900 mb-2">Requirements</h4>
-                  <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                  <p className="text-sm text-[#515154] font-normal leading-relaxed">
                     Customer interviews, technical support ticket mining, persona definition, and user story mapping.
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
                   <p className="font-mono text-xs text-[#1d1d1f] font-semibold">PRD &amp; Pain Matrix</p>
                 </div>
               </div>
@@ -412,12 +412,12 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                     <Compass className="w-4 h-4 text-[#ff3b30] shrink-0" />
                   </div>
                   <h4 className="font-sans text-base sm:text-lg font-semibold tracking-tight text-zinc-900 mb-2">Functional</h4>
-                  <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                  <p className="text-sm text-[#515154] font-normal leading-relaxed">
                     Task flow architecture, low-fidelity wireframes, progressive disclosure rules, and mental models.
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
                   <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Wireframes &amp; Flows</p>
                 </div>
               </div>
@@ -430,12 +430,12 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                     <Layers className="w-4 h-4 text-[#ff3b30] shrink-0" />
                   </div>
                   <h4 className="font-sans text-base sm:text-lg font-semibold tracking-tight text-zinc-900 mb-2">Architecture</h4>
-                  <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                  <p className="text-sm text-[#515154] font-normal leading-relaxed">
                     MATLAB Toolstrip guidelines, 3-pane dockable layout, plotting buffer, and component hierarchy.
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
                   <p className="font-mono text-xs text-[#1d1d1f] font-semibold">UI Architecture Spec</p>
                 </div>
               </div>
@@ -448,12 +448,12 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                     <Terminal className="w-4 h-4 text-[#ff3b30] shrink-0" />
                   </div>
                   <h4 className="font-sans text-base sm:text-lg font-semibold tracking-tight text-zinc-900 mb-2">Implementation</h4>
-                  <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                  <p className="text-sm text-[#515154] font-normal leading-relaxed">
                     Clickable prototypes, sprint engineering pairing, and live protocol backend binding.
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
                   <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Functional App Sprints</p>
                 </div>
               </div>
@@ -466,12 +466,12 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                     <CheckCircle2 className="w-4 h-4 text-[#ff3b30] shrink-0" />
                   </div>
                   <h4 className="font-sans text-base sm:text-lg font-semibold tracking-tight text-zinc-900 mb-2">Integration</h4>
-                  <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                  <p className="text-sm text-[#515154] font-normal leading-relaxed">
                     Hardware server stress testing, doc alignment, usability validation, and R2026a ship.
                   </p>
                 </div>
                 <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Deliverable</span>
                   <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Production R2026a</p>
                 </div>
               </div>
@@ -526,14 +526,14 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 {/* Persona 1: David */}
                 <div className="p-5 md:p-6 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
                   <div>
-                    <span className="font-mono text-[11px] text-[#ff3b30] uppercase tracking-widest font-bold block mb-1.5">Persona 1 · David</span>
+                    <span className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider font-semibold block mb-2">Persona 1 · David</span>
                     <h4 className="font-sans text-base font-semibold text-zinc-900 mb-2">Senior Control Engineer</h4>
-                    <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                    <p className="text-sm text-[#515154] font-normal leading-relaxed">
                       Fluently scripts in MATLAB but wasted hours debugging connection certificates and endpoint ports. Desired instantaneous status validation.
                     </p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
                     <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Zero-friction Connection</p>
                   </div>
                 </div>
@@ -541,14 +541,14 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 {/* Persona 2: Elena */}
                 <div className="p-5 md:p-6 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
                   <div>
-                    <span className="font-mono text-[11px] text-[#ff3b30] uppercase tracking-widest font-bold block mb-1.5">Persona 2 · Elena</span>
+                    <span className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider font-semibold block mb-2">Persona 2 · Elena</span>
                     <h4 className="font-sans text-base font-semibold text-zinc-900 mb-2">Automation Specialist</h4>
-                    <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                    <p className="text-sm text-[#515154] font-normal leading-relaxed">
                       Manages multi-vendor production lines with thousands of tags across Siemens and Rockwell PLCs. Needed quick search and tag grouping.
                     </p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
                     <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Scalable Address Space</p>
                   </div>
                 </div>
@@ -556,14 +556,14 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 {/* Persona 3: Priya */}
                 <div className="p-5 md:p-6 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
                   <div>
-                    <span className="font-mono text-[11px] text-[#ff3b30] uppercase tracking-widest font-bold block mb-1.5">Persona 3 · Priya</span>
+                    <span className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider font-semibold block mb-2">Persona 3 · Priya</span>
                     <h4 className="font-sans text-base font-semibold text-zinc-900 mb-2">Process Scientist</h4>
-                    <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                    <p className="text-sm text-[#515154] font-normal leading-relaxed">
                       Domain expert in thermodynamics with no programming background. Needed to visually inspect historical sensor drifts without writing code.
                     </p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
                     <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Graphical Historical Trends</p>
                   </div>
                 </div>
@@ -571,14 +571,14 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 {/* Persona 4: Liam */}
                 <div className="p-5 md:p-6 flex flex-col justify-between hover:bg-[#fafafc] transition-colors">
                   <div>
-                    <span className="font-mono text-[11px] text-[#ff3b30] uppercase tracking-widest font-bold block mb-1.5">Persona 4 · Liam</span>
+                    <span className="font-mono text-xs text-[#ff3b30] uppercase tracking-wider font-semibold block mb-2">Persona 4 · Liam</span>
                     <h4 className="font-sans text-base font-semibold text-zinc-900 mb-2">Test Bench Developer</h4>
-                    <p className="text-xs text-[#515154] font-normal leading-relaxed">
+                    <p className="text-sm text-[#515154] font-normal leading-relaxed">
                       Builds automated regression benches. Refused any tool that did not export clean, reproducible, version-controllable MATLAB scripts.
                     </p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-[#e5e5ea]">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6e6e73] block mb-0.5 font-semibold">Primary Focus</span>
                     <p className="font-mono text-xs text-[#1d1d1f] font-semibold">Automated Code Generation</p>
                   </div>
                 </div>
@@ -681,7 +681,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                   <div>
                     <div className="flex justify-between items-center mb-3">
                       <h4 className="font-display text-xl text-[#1d1d1f] uppercase tracking-wide font-bold">Persistent Node Function Panel</h4>
-                      <span className="bg-emerald-50 text-emerald-800 border border-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">Adopted · Shipped</span>
+                      <span className="bg-emerald-50 text-emerald-800 border border-emerald-300 font-mono text-xs font-semibold px-2.5 py-1 rounded-md uppercase">Adopted · Shipped</span>
                     </div>
                     <p className="text-sm font-normal text-[#2d2d30] leading-relaxed mb-3">
                       <strong>Instead of:</strong> launching modal popup dialogs for each read, historical query, or variable write operation.
@@ -690,7 +690,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <strong>Decision rationale:</strong> Modal windows hid the address space context and disrupted workflow continuity. A persistent right-hand sidebar reshapes itself contextually to the selected node, supporting progressive disclosure with zero modal friction.
                     </p>
                   </div>
-                  <div className="mt-5 pt-3 border-t border-[#e5e5ea] text-xs font-mono text-emerald-800 font-bold">
+                  <div className="mt-5 pt-3 border-t border-[#e5e5ea] text-xs sm:text-sm font-mono text-emerald-800 font-semibold">
                     Outcome: Shipped as the unified Node Function &amp; Information panel.
                   </div>
                 </div>
@@ -700,7 +700,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                   <div>
                     <div className="flex justify-between items-center mb-3">
                       <h4 className="font-display text-xl text-[#1d1d1f] uppercase tracking-wide font-bold">In-Table Inline Editing Columns</h4>
-                      <span className="bg-rose-50 text-rose-800 border border-rose-200 font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">Rejected Alternative</span>
+                      <span className="bg-rose-50 text-rose-800 border border-rose-200 font-mono text-xs font-semibold px-2.5 py-1 rounded-md uppercase">Rejected Alternative</span>
                     </div>
                     <p className="text-sm font-normal text-[#2d2d30] leading-relaxed mb-3">
                       <strong>Evaluated:</strong> placing editable input fields and write triggers directly inside each row of the monitoring table.
@@ -709,7 +709,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <strong>Decision rationale:</strong> Testing proved inline inputs created massive visual clutter and led to accidental write triggers during telemetry scanning. Separating monitoring from write commands preserved clean cognitive hierarchy and plant safety.
                     </p>
                   </div>
-                  <div className="mt-5 pt-3 border-t border-[#e5e5ea] text-xs font-mono text-rose-800 font-bold">
+                  <div className="mt-5 pt-3 border-t border-[#e5e5ea] text-xs sm:text-sm font-mono text-rose-800 font-semibold">
                     Outcome: Scrapped in favor of dedicated inspection and write controls.
                   </div>
                 </div>
@@ -862,7 +862,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/add-server.webp" alt="Add Server dialog in the app" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Enter host endpoint and port to query available server instances automatically.
                   </p>
                 </div>
@@ -878,7 +878,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/configure.webp" alt="Configure toolstrip in the shipped app" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Auto-discovers security policies, defaulting to the strongest encryption standard.
                   </p>
                 </div>
@@ -894,7 +894,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/connect-dialog.webp" alt="Connect OPC UA Client dialog" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Single dialog supporting Anonymous, Username, and Certificate tokens without visual clutter.
                   </p>
                 </div>
@@ -938,7 +938,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/connected-tree.webp" alt="Connected address space tree" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Hierarchical plant namespaces load immediately with instant search filtering.
                   </p>
                 </div>
@@ -954,7 +954,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/add-to-table.webp" alt="Add selected nodes to the monitoring table" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Check relevant plant tags and add them directly to the active monitoring canvas.
                   </p>
                 </div>
@@ -1002,7 +1002,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/read-current.webp" alt="Read current value" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Single-click query returns live value, quality indicator (<code className="bg-[#e5e5ea] px-1 py-0.5 rounded font-mono text-[11px] text-[#ff3b30] font-semibold">Good</code>), and timestamp with Export to Workspace.
                   </p>
                 </div>
@@ -1018,7 +1018,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/read-historical.webp" alt="Read historical value" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Custom date-time range selection with server-side aggregate functions across multiple tags.
                   </p>
                 </div>
@@ -1034,7 +1034,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/read-historical-result.webp" alt="Historical read result" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Timestamped series indicating sample quality (<code className="bg-[#e5e5ea] px-1 py-0.5 rounded font-mono text-[11px] text-[#ff3b30] font-semibold">Good (Raw)</code> and <code className="bg-[#e5e5ea] px-1 py-0.5 rounded font-mono text-[11px] text-[#ff3b30] font-semibold">Good (Interpolated)</code>).
                   </p>
                 </div>
@@ -1050,7 +1050,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/write.webp" alt="Write to a node" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Type-validated input fields push new setpoints directly to server registers with instant audit confirmation.
                   </p>
                 </div>
@@ -1080,7 +1080,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 <div className="bg-[#f5f5f7] rounded border border-[#e5e5ea] overflow-hidden">
                   <ZoomableImage src="/opcuacasestudy/assets/product/live-plot.webp" alt="Live plot of monitored node" className="w-full h-auto object-contain" />
                 </div>
-                <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                   Signals stream into the monitoring canvas on change events, giving immediate insight into plant dynamics.
                 </p>
               </div>
@@ -1109,7 +1109,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 <div className="bg-[#f5f5f7] rounded border border-[#e5e5ea] overflow-hidden">
                   <ZoomableImage src="/opcuacasestudy/assets/product/generated-script.webp" alt="Generated MATLAB script in the Live Editor" className="w-full h-auto object-contain" />
                 </div>
-                <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                   The session graduates into a modular, version-controllable MATLAB script ready for batch automation.
                 </p>
               </div>
@@ -1152,7 +1152,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/activity-log.webp" alt="Activity log tab" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     A timestamped audit log detailing connections, reads, writes, and subscription status updates.
                   </p>
                 </div>
@@ -1168,7 +1168,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                       <ZoomableImage src="/opcuacasestudy/assets/product/node-info.webp" alt="Node Information inspector attributes list" className="w-full h-auto object-contain" />
                     </div>
                   </div>
-                  <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                  <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                     Live inspector detailing BrowsePath, Identifier, AccessLevel, and ServerDataType.
                   </p>
                 </div>
@@ -1187,7 +1187,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 <div className="bg-[#f5f5f7] rounded border border-[#e5e5ea] overflow-hidden">
                   <ZoomableImage src="/opcuacasestudy/assets/product/workspace-overview.webp" alt="Full workspace with live monitoring" className="w-full h-auto object-contain" />
                 </div>
-                <p className="mt-3 text-xs font-normal text-[#515154] leading-relaxed">
+                <p className="mt-3 text-sm font-normal text-[#515154] leading-relaxed">
                   Seamless integration across tree browsing, real-time plotting, node configuration, and session logging.
                 </p>
               </div>
@@ -1300,7 +1300,7 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
             <div className="p-6 bg-white border border-[#e5e5ea] hover:border-[#ff3b30] transition-all rounded-xl shadow-sm">
               <span className="font-mono text-base text-[#ff3b30] uppercase block mb-3 font-semibold">Bets</span>
               <h4 className="font-bold text-[#1d1d1f] text-base mb-2">The two riskiest design bets</h4>
-              <p className="text-base font-normal text-[#515154] leading-relaxed">(below), examining whether real users read them the way the design intended.</p>
+              <p className="text-base font-normal text-[#515154] leading-relaxed">whether the Current/Historical split hides aggregation, and whether Configure → Connect feels clean or creates friction.</p>
             </div>
           </div>
         </div>
@@ -1320,9 +1320,6 @@ export default function OpcUaCaseStudy({ onPageChange }: OpcUaCaseStudyProps) {
                 </p>
                 <p>
                   I'll also own where my first instinct was wrong: I initially argued <em>against</em> a persistent node-functions panel, worried it would break progressive disclosure. Design review found the better answer (an empty &ldquo;select a node&rdquo; state), and that's what shipped. Good process beat my first draft.
-                </p>
-                <p>
-                  <b>What I'll keep watching now that it's live:</b> whether the Current/Historical split (with the Aggregate option tucked inside history) reads cleanly or hides too much, and whether the Configure→Connect handoff feels like two clean steps or one confusing one. Those are the two places the &ldquo;plug and play&rdquo; promise is most at risk, and the first things I'd instrument in real usage.
                 </p>
               </div>
 

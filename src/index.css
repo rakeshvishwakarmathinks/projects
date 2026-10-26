@@ -35,7 +35,8 @@
   --color-light-border-subtle: #e5e5ea;
   
   --font-display: "Bebas Neue", sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "DM Mono", monospace;
   
   --animate-pulse-slow: pulse 2s ease-in-out infinite;
@@ -75,6 +76,50 @@
     word-spacing: 0.12em;
   }
 
+  /* Editorial typography classes matching index_1a248540.html */
+  .hero-display-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+    letter-spacing: 0.02em;
+    line-height: 0.88;
+    text-transform: uppercase;
+  }
+
+  .section-display-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 3.5vw, 3.75rem);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  .card-display-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 1.8vw, 1.85rem);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .display-title {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    line-height: 0.88;
+    text-transform: uppercase;
+  }
+
+  .editorial-body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  .eyebrow-mono {
+    font-family: var(--font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
 
   .gradient-text {
     background: linear-gradient(105deg, #ff453a 0%, #ff3b30 50%, #ff3b30 100%);
@@ -239,7 +284,9 @@ body.is-scrolling ::-webkit-scrollbar-thumb {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
 }

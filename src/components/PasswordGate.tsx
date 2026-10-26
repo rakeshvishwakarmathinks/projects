@@ -96,7 +96,7 @@ export default function PasswordGate({ onSuccess, onCancel }: PasswordGateProps)
               setPassword(e.target.value);
               setError(false);
             }}
-            className={`w-full py-3.5 px-6 font-mono text-sm tracking-wider text-[#f5f5f7] bg-white/[0.04] border rounded-xl text-center outline-none transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+            className={`w-full py-3.5 px-6 font-mono text-sm tracking-wider text-[#f5f5f7] bg-white/[0.04] border rounded-xl text-center outline-none focus:outline-none focus-visible:!outline-none focus:!ring-0 focus-visible:!ring-0 transition-colors ${
               error ? 'border-red-500 focus:border-red-500' : 'border-[#1c1c22] focus:border-accent'
             }`}
             placeholder="Enter password"
