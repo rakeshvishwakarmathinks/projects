@@ -6,6 +6,38 @@ interface FooterProps {
 }
 
 export default function Footer({ onPageChange }: FooterProps) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopyEmail = async () => {
+    const email = 'v.raksh777@gmail.com';
+    let success = false;
+    if (navigator?.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(email);
+        success = true;
+      } catch {
+        success = false;
+      }
+    }
+    if (!success) {
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      } catch {
+        // clipboard unavailable
+      }
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
   return (
     <footer className="bg-black text-white py-16 border-t border-[#1c1c22]" aria-label="Site footer">
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
@@ -21,9 +53,17 @@ export default function Footer({ onPageChange }: FooterProps) {
           </button>
           
           <div className="flex flex-wrap gap-8 items-center">
-            <a href="mailto:v.raksh777@gmail.com" className="font-mono text-xs tracking-[0.18em] uppercase text-zinc-300 hover:text-accent transition-colors duration-fast">
-              Email
-            </a>
+            <button 
+              type="button"
+              onClick={handleCopyEmail}
+              className={`font-mono text-xs tracking-[0.18em] uppercase transition-colors duration-fast cursor-pointer flex items-center gap-1 ${
+                copied ? 'text-emerald-400 font-semibold' : 'text-zinc-300 hover:text-accent'
+              }`}
+              title="Click to copy v.raksh777@gmail.com"
+              aria-label="Copy email address"
+            >
+              {copied ? '✓ Copied!' : 'Email'}
+            </button>
             <a href="https://www.linkedin.com/in/rakeshvishwakarma95/" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.18em] uppercase text-zinc-300 hover:text-accent transition-colors duration-fast">
               LinkedIn
             </a>

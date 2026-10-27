@@ -60,6 +60,17 @@ export const DREAM11_IMAGES = [
   getAssetUrl('/assets/dream11_page_08.webp'),
 ];
 
+export const AI_CODE_IMAGES = [
+  getAssetUrl('/assets/ai_code_graphic.webp'),
+  getAssetUrl('/assets/ai_code_page_01.webp'),
+  getAssetUrl('/assets/ai_code_page_02.webp'),
+  getAssetUrl('/assets/ai_code_page_03.webp'),
+  getAssetUrl('/assets/ai_code_page_04.webp'),
+  getAssetUrl('/assets/ai_code_page_05.webp'),
+  getAssetUrl('/assets/ai_code_page_06.webp'),
+  getAssetUrl('/assets/ai_code_page_07.webp'),
+];
+
 /**
  * Prefetch images for a specific project/case study.
  * Can be called on card hover/pointerenter or on project page landing.
@@ -69,5 +80,7 @@ export function prefetchCaseStudy(caseId: string, priority: 'high' | 'auto' | 'l
     preloadImages(OPC_UA_IMAGES, priority);
   } else if (caseId === 'dream11') {
     preloadImages(DREAM11_IMAGES, priority);
+  } else if (caseId === 'ai-design-to-code') {
+    preloadImages(AI_CODE_IMAGES, priority);
   }
 }

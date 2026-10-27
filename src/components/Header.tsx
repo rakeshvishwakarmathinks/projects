@@ -6,8 +6,9 @@ interface HeaderProps {
   onPageChange: (page: PageId) => void;
 }
 
-export default function Header({ currentPage, onPageChange }: HeaderProps) {
+export default function Header({ currentPage: _currentPage, onPageChange }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +22,40 @@ export default function Header({ currentPage, onPageChange }: HeaderProps) {
     onPageChange(pageId);
   };
 
-  const isDarkBg = currentPage === 'home' && !isScrolled;
+  const handleCopyEmail = async () => {
+    const email = 'v.raksh777@gmail.com';
+    let success = false;
+    
+    if (navigator?.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(email);
+        success = true;
+      } catch {
+        success = false;
+      }
+    }
+    
+    if (!success) {
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      } catch {
+        // clipboard unavailable
+      }
+    }
+
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2200);
+  };
 
   return (
     <>
@@ -44,15 +78,36 @@ export default function Header({ currentPage, onPageChange }: HeaderProps) {
               Rakesh<span className="text-accent font-bold">.</span>
             </button>
 
-            {/* Desktop/Mobile Navigation Right */}
+            {/* Desktop/Mobile Navigation Right: Email Copy Button */}
             <div className="flex items-center">
-              <a 
-                href="mailto:v.raksh777@gmail.com" 
-                className="font-mono text-xs font-semibold tracking-[0.14em] uppercase text-white py-2 px-5 border border-white/20 rounded-full bg-white/[0.04] hover:bg-accent/20 hover:border-accent/60 hover:text-white focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 shadow-sm"
-                aria-label="Send email to Rakesh Vishwakarma (v.raksh777@gmail.com)"
+              <button 
+                type="button"
+                onClick={handleCopyEmail}
+                className={`font-mono text-xs font-semibold tracking-[0.14em] uppercase py-2 px-5 border rounded-full transition-all duration-300 shadow-sm flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+                  copied 
+                    ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300 shadow-[0_0_16px_rgba(16,185,129,0.25)]' 
+                    : 'text-white border-white/20 bg-white/[0.04] hover:bg-accent/20 hover:border-accent/60 hover:text-white'
+                }`}
+                aria-label="Copy email address v.raksh777@gmail.com to clipboard"
+                title="Click to copy v.raksh777@gmail.com"
               >
-                Get in touch
-              </a>
+                {copied ? (
+                  <>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Email</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-zinc-400 group-hover:text-white transition-colors" aria-hidden="true">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>

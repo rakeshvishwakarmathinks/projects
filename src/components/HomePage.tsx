@@ -257,14 +257,14 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
             >
               <div className="absolute left-0 top-0 bottom-0 w-[4px] h-0 bg-accent group-hover:h-full transition-all duration-300 z-10 rounded-l-[21px]" />
               
-              <div className="w-full bg-[#07060f] aspect-[16/8] min-h-[180px] flex items-center justify-center overflow-hidden relative border-b border-[#2e313c]">
-                <div className="text-center z-10 w-full px-6">
-                  <div className="w-[160px] h-[75px] bg-[#0d0c1a] border border-[#1a1830] rounded-lg p-2.5 mx-auto flex flex-col justify-between shadow-xl text-left font-mono">
-                    <span className="text-xs text-accent font-semibold block border-b border-[#1a1830] pb-1 uppercase">★ CSS Grid Map</span>
-                    <span className="text-xs text-emerald-400">uigridlayout column fit;</span>
-                  </div>
-                  <p className="font-mono text-xs text-zinc-400 uppercase tracking-wider mt-3 font-medium">MathWorks AI Handover Converter</p>
-                </div>
+              <div className="w-full aspect-[16/8] min-h-[180px] overflow-hidden relative border-b border-[#2e313c] bg-black">
+                <img 
+                  src={getAssetUrl('/assets/ai_code_graphic.webp')} 
+                  alt="AI Assisted Design to Code Conversion with Copilot and MATLAB App Designer 3D Graphic" 
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                />
 
                 <div className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white/80" title="Password protected" aria-label="Password protected">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false" className="w-3.5 h-3.5">
@@ -474,7 +474,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
                 <span className="text-2xl pt-0.5" aria-hidden="true">🏆</span>
                 <div>
                   <h3 className="font-display text-xl text-zinc-900 tracking-[0.02em] uppercase leading-tight mb-0.5">Clippy Award: Best AI Innovation</h3>
-                  <p className="text-xs text-zinc-600 font-mono tracking-[0.04em] leading-relaxed">MathWorks 2024 – 2025 · Conceived the MATLAB App Designer Copilot</p>
+                  <p className="text-xs text-zinc-600 font-mono tracking-[0.04em] leading-relaxed">MathWorks 2024 – 2025 · MATLAB App Designer Copilot</p>
                 </div>
               </div>
 
@@ -520,7 +520,9 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
             <div className="flex flex-col gap-4 shrink-0">
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <a 
-                  href="mailto:v.raksh777@gmail.com" 
+                  href="mailto:v.raksh777@gmail.com?subject=Product%20Design%20Inquiry%20%E2%80%94%20Rakesh%20Vishwakarma" 
+                  target="_top"
+                  rel="noopener noreferrer"
                   className="font-mono text-xs font-semibold tracking-wider text-white bg-accent hover:bg-accent-hover hover:shadow-[0_12px_40px_rgba(255,91,79,0.45)] py-4 px-8 uppercase transition-all duration-300 rounded-full w-full sm:w-[240px] text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   v.raksh777@gmail.com
