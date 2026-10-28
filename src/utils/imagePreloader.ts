@@ -91,6 +91,21 @@ export const MOTOR_IMAGES = [
   getAssetUrl('/assets/motor_page_22.webp'),
 ];
 
+export const IO_DEVICE_IMAGES = [
+  getAssetUrl('/assets/iodevice/hero_io_builder_window.webp'),
+  getAssetUrl('/assets/iodevice/toolstrip_integration.webp'),
+  getAssetUrl('/assets/iodevice/block_parameters_dialog.webp'),
+  getAssetUrl('/assets/iodevice/source_folder_selection.webp'),
+  getAssetUrl('/assets/iodevice/cpp_source_selection.webp'),
+  getAssetUrl('/assets/iodevice/outputs_dialog.webp'),
+  getAssetUrl('/assets/iodevice/inputs_dialog.webp'),
+  getAssetUrl('/assets/iodevice/persona_aneesh.webp'),
+  getAssetUrl('/assets/iodevice/persona_sam.webp'),
+  getAssetUrl('/assets/iodevice/persona_meghna.webp'),
+  getAssetUrl('/assets/iodevice/team_collaboration.webp'),
+  getAssetUrl('/assets/iodevice/challenge_wire_tangle.webp'),
+];
+
 /**
  * Prefetch images for a specific project/case study.
  * Can be called on card hover/pointerenter or on project page landing.
@@ -104,5 +119,7 @@ export function prefetchCaseStudy(caseId: string, priority: 'high' | 'auto' | 'l
     preloadImages(AI_CODE_IMAGES, priority);
   } else if (caseId === 'motor-parameter') {
     preloadImages(MOTOR_IMAGES, priority);
+  } else if (caseId === 'io-device-builder') {
+    preloadImages(IO_DEVICE_IMAGES, priority);
   }
 }

@@ -242,7 +242,7 @@ export default function MotorParameterCaseStudy({ onPageChange }: MotorParameter
           <div className="mb-12">
             <p className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 font-semibold">01 · Strategic Framework</p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl uppercase tracking-[0.02em] text-white mb-6">
-              The Enterprise Bottleneck <span className="text-accent">Solved</span>
+              The Enterprise Bottleneck
             </h2>
             <p className="text-lg font-light text-zinc-300 leading-relaxed max-w-2xl">
               We framed our design objectives around the high-stakes reality of tier-1 aerospace and EV leaders who cannot afford motor calibration errors or unverified black-box algorithms.

@@ -401,7 +401,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
                   <span className="text-zinc-400 font-light">2022</span>
                 </div>
                 <h3 className="card-display-title text-white mb-3 group-hover:text-accent transition-colors">
-                  Revolutionising Hardware Sensor Integration for 5M+ Engineers
+                  Revolutionising Hardware Sensor Integration: IO Device Builder
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-300 leading-[1.7] mb-6 font-light">
                   Engineers spent 2 to 3 days per sensor integration. We built a zero-to-one tool that reduced it to minutes, eliminating C/C++ knowledge as a prerequisite.
@@ -431,39 +431,54 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             <div className="lg:col-span-7">
-              <p className="font-mono text-xs tracking-[0.18em] uppercase text-[#c5221f] mb-3 font-semibold">About</p>
               <h2 id="about-heading" className="section-display-title text-zinc-900 mb-6 leading-[0.92]">
-                Engineer by Training.<br />
-                <span className="text-[#c5221f]">Designer by Conviction</span>.
+                ABOUT ME
               </h2>
-              <p className="text-zinc-700 font-light text-base md:text-lg leading-[1.8] mb-8 max-w-xl">
-                I started with an engineering background before discovering that the hardest problems
-                were not technical; they were human. Six years of enterprise UX leadership later, I sit at the
-                intersection of deep domain complexity and human-centered ergonomics.
-                I have led design for products used by millions of engineers globally, building AI-native
-                workflows with measurable business impact.
+
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-zinc-950 mb-6 leading-[1.2] max-w-xl">
+                I turn complex problems into <span className="text-[#c5221f]">clear products</span> and design intent into <span className="text-[#c5221f]">business outcomes</span>.
+              </h3>
+
+              <p className="text-zinc-800 font-normal text-base md:text-lg leading-[1.7] mb-4 max-w-xl">
+                Currently building at the intersection of design, technology, and business impact. From launching flagship products at MathWorks to shaping experiences for Dream11's 220M+ users. I enjoy turning complexity into clarity and bold ideas into intuitive, human-centered solutions.
+              </p>
+
+              <p className="text-zinc-700 font-light text-base md:text-lg leading-[1.7] mb-8 max-w-xl">
+                I'm equally passionate about building inclusive design cultures, mentoring teams, and ensuring design drives lasting value at scale.
               </p>
               
-              <div className="flex flex-wrap gap-2" role="list" aria-label="Core competencies">
+              <div className="flex flex-wrap gap-2 mb-8" role="list" aria-label="Core competencies">
                 {[
-                  "Strategic UX",
-                  "Enterprise Products",
-                  "AI-driven Design",
-                  "Cross-functional Leadership",
-                  "User Research",
-                  "Accessibility (WCAG)",
-                  "Design Systems",
-                  "Figma",
-                  "Miro"
+                  "Strategic growth",
+                  "Enterprise UX",
+                  "Cross-functional leadership",
+                  "AI-driven design",
+                  "Accessibility",
                 ].map((skill, idx) => (
                   <span 
                     key={idx} 
                     role="listitem"
-                    className="font-mono text-xs tracking-[0.06em] text-zinc-800 bg-zinc-100 border border-zinc-300 rounded-md py-1.5 px-3 font-medium"
+                    className="font-mono text-xs tracking-[0.06em] text-zinc-800 bg-zinc-100 border border-zinc-300 rounded-full py-1.5 px-3.5 font-medium"
                   >
                     {skill}
                   </span>
                 ))}
+              </div>
+
+              <div className="flex gap-4 max-w-xs mb-8">
+                <div className="p-4 rounded-xl border border-zinc-300 bg-zinc-50/70 min-w-[140px]">
+                  <span className="block font-display text-3xl text-zinc-950 font-bold leading-none mb-1.5">225M+</span>
+                  <span className="text-xs font-mono text-zinc-600 uppercase tracking-wider">User reach</span>
+                </div>
+              </div>
+
+              <div className="max-w-xl pt-5 border-t border-zinc-200">
+                <span className="block font-display text-sm uppercase tracking-wider text-zinc-950 font-bold mb-1.5">
+                  Tech-stack:
+                </span>
+                <p className="text-xs sm:text-sm font-mono text-zinc-600 leading-relaxed">
+                  Figma, Figma-make, Miro, Confluence, VS Code, MS Copilot, MATLAB Copilot, Google Gemini, Perplexity, Claude Code, Codex
+                </p>
               </div>
             </div>
 
