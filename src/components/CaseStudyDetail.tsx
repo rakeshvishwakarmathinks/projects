@@ -6,9 +6,10 @@ import { AnimatedCounter } from './AnimatedCounter';
 import OpcUaCaseStudy from './OpcUaCaseStudy';
 import Dream11CaseStudy from './Dream11CaseStudy';
 import AiCodeGenerationCaseStudy from './AiCodeGenerationCaseStudy';
+import MotorParameterCaseStudy from './MotorParameterCaseStudy';
 import MotorParameterSandbox from './MotorParameterSandbox';
 import ZoomableImage from './ZoomableImage';
-import { preloadImages, AI_CODE_IMAGES } from '../utils/imagePreloader';
+import { preloadImages, AI_CODE_IMAGES, MOTOR_IMAGES } from '../utils/imagePreloader';
 
 interface CaseStudyDetailProps {
   caseId: string;
@@ -24,6 +25,8 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
       preloadImages([ioDeviceBuilderImg], 'high');
     } else if (caseId === 'ai-design-to-code') {
       preloadImages(AI_CODE_IMAGES, 'high');
+    } else if (caseId === 'motor-parameter') {
+      preloadImages(MOTOR_IMAGES, 'high');
     }
   }, [caseId]);
 
@@ -430,6 +433,10 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
   }
 
   if (caseId === 'motor-parameter') {
+    return <MotorParameterCaseStudy onPageChange={onPageChange} />;
+  }
+
+  if (caseId === 'motor-parameter-legacy') {
     return (
       <main id="main-content" tabIndex={-1} className="pt-24 min-h-screen bg-bg focus:outline-none">
         {/* HERO */}
@@ -452,7 +459,7 @@ export default function CaseStudyDetail({ caseId, onPageChange }: CaseStudyDetai
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.02em] leading-[0.9] text-white mb-6">
                 Precision Motor<br />
                 Parameter Estimation<br />
-                <span className="text-accent">For Global EV OEMs</span>
+                <span className="text-accent">For Global EV<span className="font-sans font-bold lowercase text-[0.72em] inline-block align-baseline">s</span></span>
               </h1>
               <p className="text-base sm:text-lg font-light text-zinc-300 leading-[1.7] max-w-lg">
                 Motor control engineers at Boeing, Tesla, Nissan, and Ford were spending

@@ -71,6 +71,26 @@ export const AI_CODE_IMAGES = [
   getAssetUrl('/assets/ai_code_page_07.webp'),
 ];
 
+export const MOTOR_IMAGES = [
+  getAssetUrl('/assets/motor_parameter_hero.webp'),
+  getAssetUrl('/assets/motor_page_01.webp'),
+  getAssetUrl('/assets/motor_page_02.webp'),
+  getAssetUrl('/assets/motor_page_03.webp'),
+  getAssetUrl('/assets/motor_page_06.webp'),
+  getAssetUrl('/assets/motor_page_07.webp'),
+  getAssetUrl('/assets/motor_page_08.webp'),
+  getAssetUrl('/assets/motor_page_10.webp'),
+  getAssetUrl('/assets/motor_page_12.webp'),
+  getAssetUrl('/assets/motor_page_13.webp'),
+  getAssetUrl('/assets/motor_page_16.webp'),
+  getAssetUrl('/assets/motor_page_17.webp'),
+  getAssetUrl('/assets/motor_page_18.webp'),
+  getAssetUrl('/assets/motor_page_19.webp'),
+  getAssetUrl('/assets/motor_page_20.webp'),
+  getAssetUrl('/assets/motor_stator_precision.webp'),
+  getAssetUrl('/assets/motor_page_22.webp'),
+];
+
 /**
  * Prefetch images for a specific project/case study.
  * Can be called on card hover/pointerenter or on project page landing.
@@ -82,5 +102,7 @@ export function prefetchCaseStudy(caseId: string, priority: 'high' | 'auto' | 'l
     preloadImages(DREAM11_IMAGES, priority);
   } else if (caseId === 'ai-design-to-code') {
     preloadImages(AI_CODE_IMAGES, priority);
+  } else if (caseId === 'motor-parameter') {
+    preloadImages(MOTOR_IMAGES, priority);
   }
 }

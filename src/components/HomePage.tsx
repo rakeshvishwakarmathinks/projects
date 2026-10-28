@@ -317,17 +317,16 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
             >
               <div className="absolute left-0 top-0 bottom-0 w-[4px] h-0 bg-accent group-hover:h-full transition-all duration-300 z-10 rounded-l-[21px]" />
               
-              <div className="w-full bg-[#00070d] aspect-[16/8] min-h-[180px] flex items-center justify-center overflow-hidden relative border-b border-[#2e313c]">
-                <div className="text-center z-10 w-full px-6">
-                  <div className="w-[160px] h-[75px] bg-[#0a0f14] border border-[#1a1f26] rounded-lg p-2.5 mx-auto flex flex-col justify-between shadow-xl text-left font-mono">
-                    <span className="text-xs text-emerald-400 font-semibold block border-b border-[#1a1f26] pb-1 uppercase">★ Rs test complete</span>
-                    <div className="flex gap-2 items-center mt-1">
-                      <div className="w-3.5 h-3.5 rounded-full border border-accent border-r-transparent animate-spin" aria-hidden="true" />
-                      <span className="text-xs text-zinc-400">Ld test queued...</span>
-                    </div>
-                  </div>
-                  <p className="font-mono text-xs text-zinc-400 uppercase tracking-wider mt-3 font-medium">EV Motor Control Blockset Estimator</p>
-                </div>
+              <div className="w-full bg-[#00070d] aspect-[16/8] min-h-[180px] overflow-hidden relative border-b border-[#2e313c]">
+                <img 
+                  src={getAssetUrl('/assets/motor_parameter_hero.webp')} 
+                  alt="Electric motor parameter estimation workflow showing tablet dashboard with 3D parameter surface plot and motor schematics" 
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="600"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                />
 
                 <div className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white/80" title="Password protected" aria-label="Password protected">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false" className="w-3.5 h-3.5">
@@ -344,7 +343,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
                   <span className="text-zinc-400 font-light">2022 – 2024</span>
                 </div>
                 <h3 className="card-display-title text-white mb-3 group-hover:text-accent transition-colors">
-                  Precision Motor Parameter Estimation for EV OEMs
+                  Precision Motor Parameter Estimation for Global EV<span className="font-sans font-bold lowercase text-[0.72em] inline-block align-baseline">s</span>
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-300 leading-[1.7] mb-6 font-light">
                   Redesigned a complex engineering workflow for engineers at Boeing, Tesla, and Ford. The vertical became MathWorks' fastest growing in 2024 with 80%+ YoY growth.

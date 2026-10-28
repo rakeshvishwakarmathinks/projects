@@ -191,18 +191,18 @@ export default function MotorParameterSandbox() {
   const landscapeDuration = Math.max(2.5, (60.0 / activeProfile.speedKmh) * 6.0);
 
   return (
-    <section id="motor-sandbox" className="py-12 sm:py-16 md:py-20 border-b border-border-custom bg-[#f8fafc]">
+    <section id="motor-sandbox" className="py-12 sm:py-16 md:py-20 border-b border-[#e5e5ea] bg-[#f8fafc]">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
         <div className="mb-8 sm:mb-10 max-w-3xl">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-accent mb-2 sm:mb-3">
+          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-[#c5221f] mb-2 sm:mb-3 font-semibold">
             Interactive Digital Twin · Hardware-In-The-Loop
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-wide text-ink mb-2 sm:mb-3 uppercase">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-wide text-zinc-900 mb-2 sm:mb-3 uppercase">
             Live Motor Parameter Estimation &amp; Twin Observer
           </h2>
-          <p className="text-sm sm:text-base md:text-lg font-light text-ink-2 leading-relaxed">
-            Experience the electromagnetic digital twin calibration workflow used by global EV OEMs. Inspect how low-level resistance, inductance, and back-EMF constants directly converge to stabilize real-time vehicle dynamics.
+          <p className="text-sm sm:text-base md:text-lg font-light text-zinc-600 leading-relaxed">
+            Experience the electromagnetic digital twin calibration workflow used across next-gen EVs and aerospace drivetrains. Inspect how low-level resistance, inductance, and back-EMF constants directly converge to stabilize real-time vehicle dynamics.
           </p>
         </div>
 

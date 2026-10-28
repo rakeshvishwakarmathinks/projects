@@ -521,7 +521,6 @@ export default function AiCodeGenerationCaseStudy({ onPageChange }: AiCodeGenera
               <div>
                 <div className="p-4 bg-red-950/40 border-b border-red-900/30 flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-wider text-red-400 font-semibold">Legacy Workflow</span>
-                  <span className="font-mono text-xs text-red-400 font-bold">4–6 Hours / Page</span>
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex items-start gap-3 text-xs text-zinc-300">
@@ -552,7 +551,6 @@ export default function AiCodeGenerationCaseStudy({ onPageChange }: AiCodeGenera
               <div>
                 <div className="p-4 bg-emerald-950/40 border-b border-emerald-900/30 flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-wider text-emerald-400 font-semibold">AI-Assisted Workflow</span>
-                  <span className="font-mono text-xs text-emerald-400 font-bold">~10 Minutes / Page</span>
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex items-start gap-3 text-xs text-zinc-300">
