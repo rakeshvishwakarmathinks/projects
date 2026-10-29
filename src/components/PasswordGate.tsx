@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
+// Cryptographic SHA-256 hash of the portfolio password.
+// To change this in the future: compute the SHA-256 hash of your new password and update this constant.
+const PORTFOLIO_PASSWORD_HASH = 'd063a779b26d94224503e6a12a7c15a47084a7f80195960a63b009132011846f';
+
+async function computeSHA256(text: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(text);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 interface PasswordGateProps {
   onSuccess: () => void;
   onCancel: () => void;
@@ -9,6 +21,7 @@ export default function PasswordGate({ onSuccess, onCancel }: PasswordGateProps)
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   useEffect(() => {
     // Focus the password input
@@ -33,26 +46,35 @@ export default function PasswordGate({ onSuccess, onCancel }: PasswordGateProps)
     };
   }, [onCancel]);
 
-  const handleSubmit = (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    if (isVerifying) return;
     
-    const PORTFOLIO_PASSWORD = 'rakesh2026';
-    if (password.trim() === PORTFOLIO_PASSWORD) {
-      // Grant access: write to sessionStorage for tab-session durability
-      sessionStorage.setItem('rv_portfolio_auth_token', 'rv_authorized');
-      setError(false);
-      onSuccess();
-    } else {
-      setError(true);
-      setPassword('');
-      const input = document.getElementById('gate-input');
-      if (input) {
-        input.classList.add('animate-shake-gate');
-        setTimeout(() => {
-          input.classList.remove('animate-shake-gate');
-          input.focus();
-        }, 400);
+    setIsVerifying(true);
+    try {
+      const enteredHash = await computeSHA256(password.trim());
+      if (enteredHash === PORTFOLIO_PASSWORD_HASH) {
+        // Grant access: write to sessionStorage for tab-session durability
+        sessionStorage.setItem('rv_portfolio_auth_token', 'rv_authorized');
+        setError(false);
+        onSuccess();
+        return;
       }
+    } catch (err) {
+      console.error('Password verification error:', err);
+    } finally {
+      setIsVerifying(false);
+    }
+
+    setError(true);
+    setPassword('');
+    const input = document.getElementById('gate-input');
+    if (input) {
+      input.classList.add('animate-shake-gate');
+      setTimeout(() => {
+        input.classList.remove('animate-shake-gate');
+        input.focus();
+      }, 400);
     }
   };
 
