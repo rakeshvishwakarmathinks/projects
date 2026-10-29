@@ -346,7 +346,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
                   Precision Motor Parameter Estimation for Global EV<span className="font-sans font-bold lowercase text-[0.72em] inline-block align-baseline">s</span>
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-300 leading-[1.7] mb-6 font-light">
-                  Redesigned a complex engineering workflow for engineers at Boeing, Tesla, and Ford. The vertical became MathWorks' fastest growing in 2024 with 80%+ YoY growth.
+                  Redesigned a complex engineering workflow for engineers. The vertical became MathWorks' fastest growing in 2024 with 80%+ YoY growth.
                 </p>
                 <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
                   <div className="flex flex-wrap gap-2" role="list" aria-label="Tags">
@@ -404,7 +404,7 @@ export default function HomePage({ onPageChange, onCaseSelect }: HomePageProps) 
                   Revolutionising Hardware Sensor Integration: IO Device Builder
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-300 leading-[1.7] mb-6 font-light">
-                  Engineers spent 2 to 3 days per sensor integration. We built a zero-to-one tool that reduced it to minutes, eliminating C/C++ knowledge as a prerequisite.
+                  Engineers spent 2 to 3 days per sensor integration. We built a zero-to-one tool that reduced it to hours, intended to reduce C/C++ knowledge dependency.
                 </p>
                 <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
                   <div className="flex flex-wrap gap-2" role="list" aria-label="Tags">
