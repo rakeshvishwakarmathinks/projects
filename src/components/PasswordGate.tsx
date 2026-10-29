@@ -75,17 +75,9 @@ export default function PasswordGate({ onSuccess, onCancel }: PasswordGateProps)
 
         <p className="font-mono text-xs tracking-wider uppercase text-accent mb-2 font-semibold">Protected Case Study</p>
 
-        <h2 id="gate-title" className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">
+        <h2 id="gate-title" className="font-sans text-2xl md:text-3xl font-bold tracking-tight text-white mb-6">
           Enter password to view this work
         </h2>
-
-        <p id="gate-desc" className="text-sm font-normal text-zinc-300 leading-relaxed mb-6">
-          This case study contains confidential product details.<br />
-          Request access at{' '}
-          <a href="mailto:v.raksh777@gmail.com" className="text-accent underline underline-offset-4 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm transition-opacity font-medium">
-            v.raksh777@gmail.com
-          </a>
-        </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
           <input
@@ -115,10 +107,17 @@ export default function PasswordGate({ onSuccess, onCancel }: PasswordGateProps)
           </button>
           
           {error && (
-            <p id="gate-error" className="font-mono text-xs text-red-400 tracking-wider mt-2 transition-all" role="alert">
+            <p id="gate-error" className="font-mono text-xs text-red-400 tracking-wider mt-1 transition-all" role="alert">
               Incorrect password. Try again or get in touch.
             </p>
           )}
+
+          <p id="gate-desc" className="text-xs font-normal text-zinc-400 leading-relaxed mt-2">
+            Request access at{' '}
+            <a href="mailto:v.raksh777@gmail.com" className="text-accent underline underline-offset-4 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-sm transition-opacity font-medium">
+              v.raksh777@gmail.com
+            </a>
+          </p>
         </form>
 
         <button 
