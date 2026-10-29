@@ -35,6 +35,7 @@ export default function App() {
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const [pendingCaseId, setPendingCaseId] = useState<PageId | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const savedHomeScrollRef = useRef<number>(0);
 
   // Initialize Lenis for smooth scrolling & manage scrollbar visibility during scroll
   useEffect(() => {
@@ -70,12 +71,14 @@ export default function App() {
     };
   }, []);
 
-  // Scroll to top on page change
+  // Scroll to top when entering a case study page
   useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
+    if (currentPage !== 'home') {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
   }, [currentPage]);
 
@@ -87,7 +90,7 @@ export default function App() {
     // For a clean portfolio experience, we always start at the main Home page on fresh load or page refresh
     setCurrentPage('home');
     if (window.location.hash !== '') {
-      window.location.hash = '';
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 
     const handleHashChange = () => {
@@ -99,6 +102,9 @@ export default function App() {
         if (isAuthed) {
           setCurrentPage(pageFromHash);
         } else {
+          if (savedHomeScrollRef.current === 0) {
+            savedHomeScrollRef.current = window.scrollY || document.documentElement.scrollTop || 0;
+          }
           setPendingCaseId(pageFromHash);
         }
       } else {
@@ -112,6 +118,40 @@ export default function App() {
 
   // Handle page transitions safely
   const handlePageChange = (page: PageId) => {
+    // If user is currently on home, save their scroll position
+    if (currentPage === 'home') {
+      savedHomeScrollRef.current = window.scrollY || document.documentElement.scrollTop || 0;
+    }
+
+    if (page === 'home') {
+      if (currentPage === 'home') {
+        // Already on home and clicked Logo: smooth scroll to top
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(0);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        savedHomeScrollRef.current = 0;
+      } else {
+        // Returning to home from a case study: restore saved scroll position
+        setCurrentPage('home');
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+        requestAnimationFrame(() => {
+          const returnScroll = savedHomeScrollRef.current;
+          if (returnScroll > 0) {
+            if (lenisRef.current) {
+              lenisRef.current.scrollTo(returnScroll, { immediate: true });
+            } else {
+              window.scrollTo(0, returnScroll);
+            }
+          }
+        });
+      }
+      return;
+    }
+
     const isProtected = ['dream11', 'motor-parameter', 'io-device-builder', 'ai-design-to-code', 'opc-ua-explorer'].includes(page);
     prefetchCaseStudy(page, 'high');
     
@@ -122,12 +162,12 @@ export default function App() {
         setCurrentPage(page);
         window.location.hash = `cases/${page}`;
       } else {
+        // Open password gate as modal overlay without mutating URL hash (prevents browser scroll-to-top jump)
         setPendingCaseId(page);
-        window.location.hash = `cases/${page}`;
       }
     } else {
       setCurrentPage(page);
-      window.location.hash = page === 'home' ? '' : page;
+      window.location.hash = page;
     }
   };
 
@@ -144,9 +184,24 @@ export default function App() {
 
   // Callback on PasswordGate rejection or cancellation
   const handlePasswordCancel = () => {
+    const returnScroll = savedHomeScrollRef.current;
     setPendingCaseId(null);
-    window.location.hash = '';
-    // Maintain state at current preview page or clean home
+    
+    // Clear any hash if present without triggering browser jump to top (#)
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    
+    // Smoothly ensure exact scroll position is maintained
+    requestAnimationFrame(() => {
+      if (returnScroll > 0) {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(returnScroll, { immediate: true });
+        } else {
+          window.scrollTo(0, returnScroll);
+        }
+      }
+    });
   };
 
   return (
