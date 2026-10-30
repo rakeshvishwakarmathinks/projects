@@ -56,6 +56,7 @@ export function preloadImages(urls: string[], priority: 'high' | 'auto' | 'low' 
 }
 
 export const DREAM11_IMAGES = [
+  getAssetUrl('/assets/dream11cardimage.webp'),
   getAssetUrl('/assets/dream11_page_04.webp'),
   getAssetUrl('/assets/dream11_page_08.webp'),
 ];

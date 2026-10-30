@@ -23,15 +23,29 @@ export default function ZoomableImage({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const resolvedSrc = getAssetUrl(src);
+  const [currentSrc, setCurrentSrc] = useState(resolvedSrc);
+  const [hasTriedFallback, setHasTriedFallback] = useState(false);
 
   useEffect(() => {
+    setCurrentSrc(resolvedSrc);
+    setIsLoaded(false);
+    setHasTriedFallback(false);
+
     // If the image is already in browser cache, mark as loaded immediately
     const img = new Image();
     img.src = resolvedSrc;
-    if (img.complete) {
+    if (img.complete && img.naturalWidth > 0) {
       setIsLoaded(true);
     }
   }, [resolvedSrc]);
+
+  const handleError = () => {
+    // If WebP fails to load, attempt fallback to .png if available
+    if (!hasTriedFallback && currentSrc.includes('.webp')) {
+      setHasTriedFallback(true);
+      setCurrentSrc(currentSrc.replace(/\.webp($|\?)/, '.png$1'));
+    }
+  };
 
   return (
     <>
@@ -49,13 +63,13 @@ export default function ZoomableImage({
         }}
       >
         <img 
-          src={resolvedSrc} 
-          alt=""
-          aria-hidden="true" 
+          src={currentSrc} 
+          alt={alt} 
           loading={loading}
           decoding="async"
           fetchPriority={priority ? "high" : "auto"}
           onLoad={() => setIsLoaded(true)}
+          onError={handleError}
           className={`${className} group-hover:scale-[1.015] transition-all duration-300 ease-out ${
             isLoaded ? 'opacity-100' : 'opacity-90'
           }`}
@@ -72,7 +86,7 @@ export default function ZoomableImage({
       <ImageZoomModal 
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)} 
-        src={resolvedSrc} 
+        src={currentSrc} 
         alt={alt} 
       />
     </>
